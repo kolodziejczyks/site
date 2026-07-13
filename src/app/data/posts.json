@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T11:03:10.213Z",
+  "generatedAt": "2026-07-13T12:48:15.803Z",
   "posts": [
     {
       "id": "17860114731660539",
@@ -8,7 +8,12 @@
       "permalink": "https://www.instagram.com/reel/DakdrI3gBtS/",
       "thumbnailUrl": "/thumbnails/17860114731660539.jpg",
       "caption": "zachęcam do wyłączenia",
-      "sources": []
+      "sources": [
+        {
+          "label": "about.fb.com",
+          "url": "https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/"
+        }
+      ]
     },
     {
       "id": "17883962106660402",
@@ -251,7 +256,20 @@
       "permalink": "https://www.instagram.com/reel/DPaw98ICCjj/",
       "thumbnailUrl": "/thumbnails/18391011844193102.jpg",
       "caption": "wiedzieliście że jest tak źle? #dezinformacja #manipulacja #media",
-      "sources": []
+      "sources": [
+        {
+          "label": "pewresearch.org",
+          "url": "https://www.pewresearch.org/global/2025/04/24/widespread-global-public-concern-about-made-up-news/"
+        },
+        {
+          "label": "redline.digital",
+          "url": "https://redline.digital/fake-news-statistics/"
+        },
+        {
+          "label": "demandsage.com",
+          "url": "https://www.demandsage.com/fake-news-statistics/"
+        }
+      ]
     },
     {
       "id": "18079636730486009",
@@ -296,7 +314,16 @@
       "permalink": "https://www.instagram.com/reel/DO6dT56CDpC/",
       "thumbnailUrl": "/thumbnails/18138537733432127.jpg",
       "caption": "francja ogarnij się co #chatcontrol #csar #ai #inwigilacja",
-      "sources": []
+      "sources": [
+        {
+          "label": "gov.pl",
+          "url": "https://www.gov.pl/web/cyfryzacja/stanowisko-ministerstwa-cyfryzacji-w-zwiazku-z-akcja-stop-chat-control"
+        },
+        {
+          "label": "bundestag.de",
+          "url": "https://www.bundestag.de/presse/hib/kurzmeldungen-1108356"
+        }
+      ]
     },
     {
       "id": "18365939812154316",
@@ -314,7 +341,16 @@
       "permalink": "https://www.instagram.com/reel/DOth2wAiGl8/",
       "thumbnailUrl": "/thumbnails/18079192828808311.jpg",
       "caption": "SZYBKIE WAŻNE INFO ❕❕❕#palestyna #gaza #izrael #dezinformacja #freepalestine🇵🇸",
-      "sources": []
+      "sources": [
+        {
+          "label": "pap.pl",
+          "url": "https://www.pap.pl/aktualnosci/szef-msz-zapowiadane-unijne-ograniczenia-w-handlu-zaszkodza-samej-ue"
+        },
+        {
+          "label": "aje.io",
+          "url": "https://aje.io/iylilq"
+        }
+      ]
     },
     {
       "id": "17857728816508315",
@@ -332,7 +368,24 @@
       "permalink": "https://www.instagram.com/reel/DOJSWLXiM0n/",
       "thumbnailUrl": "/thumbnails/17894945721295610.jpg",
       "caption": "ALL EYES ON THEM!!! musimy ich pilnować #globalsumudflotilla #freepalestine🇵🇸 #stopthegenocide",
-      "sources": []
+      "sources": [
+        {
+          "label": "globalsumudflotilla.org",
+          "url": "https://globalsumudflotilla.org"
+        },
+        {
+          "label": "edition.cnn.com",
+          "url": "https://edition.cnn.com/2023/08/25/world/israeli-minister-racist-claim-intl"
+        },
+        {
+          "label": "jpost.com",
+          "url": "https://www.jpost.com/israel-news/article-865898"
+        },
+        {
+          "label": "aa.com.tr",
+          "url": "https://www.aa.com.tr/en/middle-east/investigation-finds-israeli-forces-shot-95-gaza-children-in-head-or-chest-in-over-160-examined-cases/3649091"
+        }
+      ]
     },
     {
       "id": "17857777782495709",
@@ -341,7 +394,16 @@
       "permalink": "https://www.instagram.com/reel/DN5QYijiG2f/",
       "thumbnailUrl": "/thumbnails/17857777782495709.jpg",
       "caption": "dania ma czasem też dobre pomysły #ai #manipulacja #dezinformacja #deepfake",
-      "sources": []
+      "sources": [
+        {
+          "label": "theguardian.com",
+          "url": "https://www.theguardian.com/technology/2025/jun/27/deepfakes-denmark-copyright-law-artificial-intelligence"
+        },
+        {
+          "label": "lsj.com.au",
+          "url": "https://lsj.com.au/articles/denmark-proposes-copyright-laws-to-protect-against-deepfakes/"
+        }
+      ]
     },
     {
       "id": "17894059065162198",
@@ -350,7 +412,20 @@
       "permalink": "https://www.instagram.com/reel/DNdG5c-MkbB/",
       "thumbnailUrl": "/thumbnails/17894059065162198.jpg",
       "caption": "hell nah 😭 #CSAR #eu #ai #invigilation",
-      "sources": []
+      "sources": [
+        {
+          "label": "eu.ci",
+          "url": "https://eu.ci/eu-chat-control-regulation/"
+        },
+        {
+          "label": "fightchatcontrol.eu",
+          "url": "https://fightchatcontrol.eu/#overview"
+        },
+        {
+          "label": "hide.me",
+          "url": "https://hide.me/en/blog/chat-control-the-eu-is-about-to-read-every-message-you-send/#h-the-cascade-of-catastrophe-why-chat-control-is-a-terrible-idea"
+        }
+      ]
     },
     {
       "id": "18076024081795422",
@@ -359,7 +434,28 @@
       "permalink": "https://www.instagram.com/reel/DNX8QPgs5nS/",
       "thumbnailUrl": "/thumbnails/18076024081795422.jpg",
       "caption": "może to i dobrze 😔 git czy nie git? #meta #google #ue #dezinformacja #misinformacja #disinformation #misinformation",
-      "sources": []
+      "sources": [
+        {
+          "label": "eur-lex.europa.eu",
+          "url": "https://eur-lex.europa.eu/EN/legal-content/summary/transparency-and-targeting-of-political-advertising.html"
+        },
+        {
+          "label": "blog.google",
+          "url": "https://blog.google/around-the-globe/google-europe/political-advertising-in-eu/"
+        },
+        {
+          "label": "about.fb.com",
+          "url": "https://about.fb.com/news/2025/07/ending-political-electoral-and-social-issue-advertising-in-the-eu/amp/"
+        },
+        {
+          "label": "businessinsider.com.pl",
+          "url": "https://businessinsider.com.pl/polityka/reklamy-wyborcze-finansowane-z-zagranicy-popieraly-rafala-trzaskowskiego/55c6dv6"
+        },
+        {
+          "label": "wiadomosci.wp.pl",
+          "url": "https://wiadomosci.wp.pl/ujawniamy-ingerencja-w-wybory-spoty-bez-autora-i-akcja-demokracja-7156892271278624a"
+        }
+      ]
     },
     {
       "id": "18067160858177201",
@@ -368,7 +464,32 @@
       "permalink": "https://www.instagram.com/reel/DNLBfMPM2YK/",
       "thumbnailUrl": "/thumbnails/18067160858177201.jpg",
       "caption": "już w nic nie można wierzyć w internecie 😔 #israel #gaza #un #disinformation #misinformation #malinformation #dezinformacja #misinformacja #malinformacja",
-      "sources": []
+      "sources": [
+        {
+          "label": "pap.pl",
+          "url": "https://www.pap.pl/aktualnosci/msz-koordynuje-z-krajami-europejskimi-reakcje-na-spoty-izraela-publikowane-min-na"
+        },
+        {
+          "label": "amp.cnn.com",
+          "url": "https://amp.cnn.com/cnn/2025/04/24/middleeast/israel-acknowledges-killing-un-aid-worker-latam-intl"
+        },
+        {
+          "label": "bbc.com",
+          "url": "https://www.bbc.com/news/articles/cx2x5eyl676o.amp"
+        },
+        {
+          "label": "hrw.org",
+          "url": "https://www.hrw.org/news/2025/08/01/gaza-israeli-killings-of-palestinians-seeking-food-are-war-crimes"
+        },
+        {
+          "label": "npr.org",
+          "url": "https://www.npr.org/2024/07/09/nx-s1-4994027/israel-us-online-influence-campaign-gaza"
+        },
+        {
+          "label": "theguardian.com",
+          "url": "https://www.theguardian.com/technology/article/2024/may/30/openai-disinformation-russia-israel-china-iran"
+        }
+      ]
     },
     {
       "id": "18035358923677637",
@@ -425,5 +546,131 @@
       "sources": []
     }
   ],
-  "catalog": {}
+  "catalog": {
+    "about.fb.com": {
+      "org": "about.fb.com",
+      "domain": "about.fb.com",
+      "url": "https://about.fb.com"
+    },
+    "pewresearch.org": {
+      "org": "pewresearch.org",
+      "domain": "pewresearch.org",
+      "url": "https://www.pewresearch.org"
+    },
+    "redline.digital": {
+      "org": "redline.digital",
+      "domain": "redline.digital",
+      "url": "https://redline.digital"
+    },
+    "demandsage.com": {
+      "org": "demandsage.com",
+      "domain": "demandsage.com",
+      "url": "https://www.demandsage.com"
+    },
+    "gov.pl": {
+      "org": "gov.pl",
+      "domain": "gov.pl",
+      "url": "https://www.gov.pl"
+    },
+    "bundestag.de": {
+      "org": "bundestag.de",
+      "domain": "bundestag.de",
+      "url": "https://www.bundestag.de"
+    },
+    "pap.pl": {
+      "org": "pap.pl",
+      "domain": "pap.pl",
+      "url": "https://www.pap.pl"
+    },
+    "aje.io": {
+      "org": "aje.io",
+      "domain": "aje.io",
+      "url": "https://aje.io"
+    },
+    "globalsumudflotilla.org": {
+      "org": "globalsumudflotilla.org",
+      "domain": "globalsumudflotilla.org",
+      "url": "https://globalsumudflotilla.org"
+    },
+    "edition.cnn.com": {
+      "org": "edition.cnn.com",
+      "domain": "edition.cnn.com",
+      "url": "https://edition.cnn.com"
+    },
+    "jpost.com": {
+      "org": "jpost.com",
+      "domain": "jpost.com",
+      "url": "https://www.jpost.com"
+    },
+    "aa.com.tr": {
+      "org": "aa.com.tr",
+      "domain": "aa.com.tr",
+      "url": "https://www.aa.com.tr"
+    },
+    "theguardian.com": {
+      "org": "theguardian.com",
+      "domain": "theguardian.com",
+      "url": "https://www.theguardian.com"
+    },
+    "lsj.com.au": {
+      "org": "lsj.com.au",
+      "domain": "lsj.com.au",
+      "url": "https://lsj.com.au"
+    },
+    "eu.ci": {
+      "org": "eu.ci",
+      "domain": "eu.ci",
+      "url": "https://eu.ci"
+    },
+    "fightchatcontrol.eu": {
+      "org": "fightchatcontrol.eu",
+      "domain": "fightchatcontrol.eu",
+      "url": "https://fightchatcontrol.eu"
+    },
+    "hide.me": {
+      "org": "hide.me",
+      "domain": "hide.me",
+      "url": "https://hide.me"
+    },
+    "eur-lex.europa.eu": {
+      "org": "eur-lex.europa.eu",
+      "domain": "eur-lex.europa.eu",
+      "url": "https://eur-lex.europa.eu"
+    },
+    "blog.google": {
+      "org": "blog.google",
+      "domain": "blog.google",
+      "url": "https://blog.google"
+    },
+    "businessinsider.com.pl": {
+      "org": "businessinsider.com.pl",
+      "domain": "businessinsider.com.pl",
+      "url": "https://businessinsider.com.pl"
+    },
+    "wiadomosci.wp.pl": {
+      "org": "wiadomosci.wp.pl",
+      "domain": "wiadomosci.wp.pl",
+      "url": "https://wiadomosci.wp.pl"
+    },
+    "amp.cnn.com": {
+      "org": "amp.cnn.com",
+      "domain": "amp.cnn.com",
+      "url": "https://amp.cnn.com"
+    },
+    "bbc.com": {
+      "org": "bbc.com",
+      "domain": "bbc.com",
+      "url": "https://www.bbc.com"
+    },
+    "hrw.org": {
+      "org": "hrw.org",
+      "domain": "hrw.org",
+      "url": "https://www.hrw.org"
+    },
+    "npr.org": {
+      "org": "npr.org",
+      "domain": "npr.org",
+      "url": "https://www.npr.org"
+    }
+  }
 }
