@@ -24,7 +24,12 @@ import { Post } from '../models';
                     {{ s.title || s.label }}
                     <span class="msym">open_in_new</span>
                   </span>
-                  <span class="src-domain">{{ s.siteName ? s.siteName + ' · ' : '' }}{{ s.label }}</span>
+                  <span class="src-domain">
+                    @if (s.favicon) {
+                      <img class="fav" [src]="s.favicon" alt="" width="14" height="14" />
+                    }
+                    {{ s.siteName ? s.siteName + ' · ' : '' }}{{ s.label }}
+                  </span>
                   @if (s.description) {
                     <span class="src-desc">{{ s.description }}</span>
                   }

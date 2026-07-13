@@ -45,6 +45,8 @@ export class DataService {
   /** Sources grouped by domain, each with the in-range posts that cite it. */
   readonly sourceGroups = computed<SourceGroup[]>(() => {
     const byDomain = new Map<string, SourceGroup>();
+    const seenPosts = new Map<string, Set<string>>(); // domain -> post ids
+    const seenLinks = new Map<string, Set<string>>(); // domain -> urls
     const orderedLabels = Object.keys(this.catalog);
     for (const post of this.filteredPosts()) {
       for (const s of post.sources) {
@@ -52,10 +54,19 @@ export class DataService {
         if (!meta) continue;
         let group = byDomain.get(meta.domain);
         if (!group) {
-          group = { ...meta, label: s.label, posts: [] };
+          group = { ...meta, label: s.label, links: [], posts: [] };
           byDomain.set(meta.domain, group);
+          seenPosts.set(meta.domain, new Set());
+          seenLinks.set(meta.domain, new Set());
         }
-        group.posts.push(post);
+        if (!seenPosts.get(meta.domain)!.has(post.id)) {
+          seenPosts.get(meta.domain)!.add(post.id);
+          group.posts.push(post);
+        }
+        if (!seenLinks.get(meta.domain)!.has(s.url)) {
+          seenLinks.get(meta.domain)!.add(s.url);
+          group.links.push(s);
+        }
       }
     }
     // Preserve catalog declaration order.

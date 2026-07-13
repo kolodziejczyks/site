@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T13:44:56.777Z",
+  "generatedAt": "2026-07-13T13:59:09.851Z",
   "posts": [
     {
       "id": "17860114731660539",
@@ -12,6 +12,7 @@
         {
           "label": "about.fb.com",
           "url": "https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/",
+          "favicon": "/favicons/about.fb.com.png",
           "title": "Introducing Muse Image: Image Generation Built for Your World",
           "siteName": "Meta Newsroom",
           "description": "Muse Image is the first image generation model from Meta Superintelligence Labs, now available in Meta AI."
@@ -218,17 +219,20 @@
         {
           "label": "pewresearch.org",
           "url": "https://www.pewresearch.org/global/2025/04/24/widespread-global-public-concern-about-made-up-news/",
+          "favicon": "/favicons/pewresearch.org.png",
           "title": "1. Widespread global public concern about made-up news",
           "siteName": "Pew Research Center",
           "description": "A median of 59% across 35 countries see made-up news as a very big problem."
         },
         {
           "label": "redline.digital",
-          "url": "https://redline.digital/fake-news-statistics/"
+          "url": "https://redline.digital/fake-news-statistics/",
+          "favicon": "/favicons/redline.digital.png"
         },
         {
           "label": "demandsage.com",
           "url": "https://www.demandsage.com/fake-news-statistics/",
+          "favicon": "/favicons/demandsage.com.png",
           "title": "19 Fake News Statistics 2026 [Global Reports & Influence]",
           "siteName": "DemandSage",
           "description": "Approximately 86% of people worldwide have encountered fake news. Learn more about Fake news statistics in this report."
@@ -282,6 +286,7 @@
         {
           "label": "gov.pl",
           "url": "https://www.gov.pl/web/cyfryzacja/stanowisko-ministerstwa-cyfryzacji-w-zwiazku-z-akcja-stop-chat-control",
+          "favicon": "/favicons/gov.pl.png",
           "title": "Stanowisko Ministerstwa Cyfryzacji w związku z akcją „Stop Chat Control” - Ministerstwo Cyfryzacji - Portal Gov.pl",
           "siteName": "Ministerstwo Cyfryzacji",
           "description": "Polska broni prywatności użytkowników internetu i przeciwstawia się masowemu skanowaniu prywatnej korespondencji. Jednocześnie opowiada się za wprowadzeniem w Unii Europejskiej środków, które umożliw…"
@@ -289,6 +294,7 @@
         {
           "label": "bundestag.de",
           "url": "https://www.bundestag.de/presse/hib/kurzmeldungen-1108356",
+          "favicon": "/favicons/bundestag.de.png",
           "title": "Ausschuss befasst sich mit Stand bei der CSAM-Verordnung",
           "siteName": "Deutscher Bundestag",
           "description": "Berlin: (hib/LBR) Der Digitalausschuss hat sich am Mittwochnachmittag mit dem Stand bei der unter dem Stichwort 'Chatkontrolle' bekannten CSAM-Verordnung befasst. Mit ihr soll sexualisierte..."
@@ -315,6 +321,7 @@
         {
           "label": "pap.pl",
           "url": "https://www.pap.pl/aktualnosci/szef-msz-zapowiadane-unijne-ograniczenia-w-handlu-zaszkodza-samej-ue",
+          "favicon": "/favicons/pap.pl.png",
           "title": "Widmo unijnych ceł na Izrael. Szef MSZ odpowiada | Polska Agencja Prasowa SA",
           "siteName": "Polska Agencja Prasowa SA",
           "description": "Minister spraw zagranicznych Izraela Gideon Saar ocenił, że unijna propozycja zawieszenia wolnego handlu z Izraelem zaszkodzi samej Unii Europejskiej. Mam nadzieję, że projekt nie zostanie przyjęty,…"
@@ -322,6 +329,7 @@
         {
           "label": "aje.io",
           "url": "https://aje.io/iylilq",
+          "favicon": "/favicons/aje.io.png",
           "title": "EU proposes suspension of trade concessions with Israel over Gaza war",
           "siteName": "Al Jazeera",
           "description": "The European Commission also proposes sanctions on 'extremist ministers' in the Israeli government and violent settlers."
@@ -348,17 +356,20 @@
         {
           "label": "globalsumudflotilla.org",
           "url": "https://globalsumudflotilla.org",
+          "favicon": "/favicons/globalsumudflotilla.org.png",
           "title": "Sail to Gaza - Collective Action for Gaza",
           "siteName": "Global Sumud Flotilla",
           "description": "Join Global Sumud Flotilla Spring 2026 Mission: Stand with Gaza. Support Palestine and demand justice. Act now."
         },
         {
           "label": "edition.cnn.com",
-          "url": "https://edition.cnn.com/2023/08/25/world/israeli-minister-racist-claim-intl"
+          "url": "https://edition.cnn.com/2023/08/25/world/israeli-minister-racist-claim-intl",
+          "favicon": "/favicons/edition.cnn.com.png"
         },
         {
           "label": "jpost.com",
           "url": "https://www.jpost.com/israel-news/article-865898",
+          "favicon": "/favicons/jpost.com.png",
           "title": "Itamar Ben-Gvir to designate flotilla activists as terrorists | The Jerusalem Post",
           "siteName": "The Jerusalem Post | JPost.com",
           "description": "Activists will be held in prisons for terrorists and will be denied special privileges such as television, radio, and specialized food."
@@ -366,6 +377,7 @@
         {
           "label": "aa.com.tr",
           "url": "https://www.aa.com.tr/en/middle-east/investigation-finds-israeli-forces-shot-95-gaza-children-in-head-or-chest-in-over-160-examined-cases/3649091",
+          "favicon": "/favicons/aa.com.tr.png",
           "title": "Investigation finds Israeli forces shot 95 Gaza children in head or chest in over 160 examined cases",
           "siteName": "Anadolu",
           "description": "BBC investigation reveals majority of children were under 12, with killings spanning from start of war to July | Anadolu"
@@ -383,13 +395,15 @@
         {
           "label": "theguardian.com",
           "url": "https://www.theguardian.com/technology/2025/jun/27/deepfakes-denmark-copyright-law-artificial-intelligence",
+          "favicon": "/favicons/theguardian.com.png",
           "title": "Denmark to tackle deepfakes by giving people copyright to their own features",
           "siteName": "the Guardian",
           "description": "Amendment to law will strengthen protection against digital imitations of people’s identities, government says"
         },
         {
           "label": "lsj.com.au",
-          "url": "https://lsj.com.au/articles/denmark-proposes-copyright-laws-to-protect-against-deepfakes/"
+          "url": "https://lsj.com.au/articles/denmark-proposes-copyright-laws-to-protect-against-deepfakes/",
+          "favicon": "/favicons/lsj.com.au.png"
         }
       ]
     },
@@ -403,17 +417,21 @@
       "sources": [
         {
           "label": "eu.ci",
-          "url": "https://eu.ci/eu-chat-control-regulation/"
+          "url": "https://eu.ci/eu-chat-control-regulation/",
+          "favicon": "/favicons/eu.ci.png",
+          "title": "European Ethereum Institute – Shaping Fair Crypto Regulation in Europe"
         },
         {
           "label": "fightchatcontrol.eu",
           "url": "https://fightchatcontrol.eu/#overview",
+          "favicon": "/favicons/fightchatcontrol.eu.png",
           "title": "Fight Chat Control - Protect Digital Privacy in the EU",
           "description": "Learn about the EU Chat Control proposal and contact your representatives to protect digital privacy and encryption."
         },
         {
           "label": "hide.me",
           "url": "https://hide.me/en/blog/chat-control-the-eu-is-about-to-read-every-message-you-send/#h-the-cascade-of-catastrophe-why-chat-control-is-a-terrible-idea",
+          "favicon": "/favicons/hide.me.png",
           "title": "Fight \"Chat Control\": The EU is about to read every message you send",
           "siteName": "hide.me",
           "description": "EU “Chat Control” would scan every message via client-side scanning, gutting E2EE and privacy. Learn the risks and how to protect yourself."
@@ -430,11 +448,13 @@
       "sources": [
         {
           "label": "eur-lex.europa.eu",
-          "url": "https://eur-lex.europa.eu/EN/legal-content/summary/transparency-and-targeting-of-political-advertising.html"
+          "url": "https://eur-lex.europa.eu/EN/legal-content/summary/transparency-and-targeting-of-political-advertising.html",
+          "favicon": "/favicons/eur-lex.europa.eu.png"
         },
         {
           "label": "blog.google",
           "url": "https://blog.google/around-the-globe/google-europe/political-advertising-in-eu/",
+          "favicon": "/favicons/blog.google.png",
           "title": "An update on political advertising in the European Union",
           "siteName": "Google",
           "description": "Google will stop serving political advertising in the EU ahead of new regulation in October 2025."
@@ -442,6 +462,7 @@
         {
           "label": "about.fb.com",
           "url": "https://about.fb.com/news/2025/07/ending-political-electoral-and-social-issue-advertising-in-the-eu/amp/",
+          "favicon": "/favicons/about.fb.com.png",
           "title": "Ending Political, Electoral and Social Issue Advertising in the EU in Response to Incoming European Regulation",
           "siteName": "Meta Newsroom",
           "description": "Update on October 6, 2025 at 10am PT: As of today, political, electoral and social issue adverts are no longer able to be delivered in the EU. Originally"
@@ -449,6 +470,7 @@
         {
           "label": "businessinsider.com.pl",
           "url": "https://businessinsider.com.pl/polityka/reklamy-wyborcze-finansowane-z-zagranicy-popieraly-rafala-trzaskowskiego/55c6dv6",
+          "favicon": "/favicons/businessinsider.com.pl.png",
           "title": "Reklamy wyborcze finansowane z zagranicy. Popierały Rafała Trzaskowskiego",
           "siteName": "Business Insider Polska",
           "description": "Za publikowanymi w internecie finansowanymi z zagranicy reklamami politycznymi atakującymi konkurentów Rafała Trzaskowskiego stoi pracownik i wolontariusze fundacji Akcja Demokracja powiązani z Koa..."
@@ -456,6 +478,7 @@
         {
           "label": "wiadomosci.wp.pl",
           "url": "https://wiadomosci.wp.pl/ujawniamy-ingerencja-w-wybory-spoty-bez-autora-i-akcja-demokracja-7156892271278624a",
+          "favicon": "/favicons/wiadomosci.wp.pl.png",
           "title": "Ujawniamy. Ingerencja w wybory, spoty bez autora i Akcja Demokracja",
           "siteName": "WP Wiadomości",
           "description": "Za publikowanymi w internecie reklamami politycznymi promującymi Rafała Trzaskowskiego i atakującymi jego konkurentów stoi pracownik i wolontariusze fundacji Akcja Demokracja – wynika z informacji Wi…"
@@ -473,23 +496,27 @@
         {
           "label": "pap.pl",
           "url": "https://www.pap.pl/aktualnosci/msz-koordynuje-z-krajami-europejskimi-reakcje-na-spoty-izraela-publikowane-min-na",
+          "favicon": "/favicons/pap.pl.png",
           "title": "Sprawa izraelskich spotów odnośnie Strefy Gazy. Polskie MSZ podjęło kroki | Polska Agencja Prasowa SA",
           "siteName": "Polska Agencja Prasowa SA",
           "description": "MSZ poinformowało PAP, że koordynuje z krajami europejskimi reakcję na spoty Izraela publikowane m.in. w serwisie YouTube. W jednym z nagrań pojawia się twierdzenie, że ONZ odmawia dystrybucji żywnoś…"
         },
         {
           "label": "amp.cnn.com",
-          "url": "https://amp.cnn.com/cnn/2025/04/24/middleeast/israel-acknowledges-killing-un-aid-worker-latam-intl"
+          "url": "https://amp.cnn.com/cnn/2025/04/24/middleeast/israel-acknowledges-killing-un-aid-worker-latam-intl",
+          "favicon": "/favicons/amp.cnn.com.png"
         },
         {
           "label": "bbc.com",
           "url": "https://www.bbc.com/news/articles/cx2x5eyl676o.amp",
+          "favicon": "/favicons/bbc.com.png",
           "title": "Aid group says worker killed by Israeli military in attack on Gaza HQ",
           "description": "The Palestine Red Crescent Society accuses Israel of a \"direct\" strike - Israel says it is reviewing the claim."
         },
         {
           "label": "hrw.org",
           "url": "https://www.hrw.org/news/2025/08/01/gaza-israeli-killings-of-palestinians-seeking-food-are-war-crimes",
+          "favicon": "/favicons/hrw.org.png",
           "title": "Gaza: Israeli Killings of Palestinians Seeking Food Are War Crimes",
           "siteName": "Human Rights Watch",
           "description": "Israeli forces at the sites of a new US-backed aid distribution system in Gaza have routinely opened fire on starving Palestinian civilians in acts that amount to serious violations of international…"
@@ -497,6 +524,7 @@
         {
           "label": "npr.org",
           "url": "https://www.npr.org/2024/07/09/nx-s1-4994027/israel-us-online-influence-campaign-gaza",
+          "favicon": "/favicons/npr.org.png",
           "title": "How Israel tried to use AI to covertly sway Americans about Gaza",
           "siteName": "NPR",
           "description": "A new report by an Israeli watchdog group ties an Israeli firm to a covert online campaign intended to sway crucial Democratic lawmakers to continue backing Israel’s campaign in Gaza."
@@ -504,6 +532,7 @@
         {
           "label": "theguardian.com",
           "url": "https://www.theguardian.com/technology/article/2024/may/30/openai-disinformation-russia-israel-china-iran",
+          "favicon": "/favicons/theguardian.com.png",
           "title": "OpenAI says Russian and Israeli groups used its tools to spread disinformation",
           "siteName": "the Guardian",
           "description": "Networks in China and Iran also used AI models to create and post disinformation but campaigns did not reach large audiences"
@@ -524,127 +553,152 @@
     "about.fb.com": {
       "org": "Meta Newsroom",
       "domain": "about.fb.com",
-      "url": "https://about.fb.com"
+      "url": "https://about.fb.com",
+      "favicon": "/favicons/about.fb.com.png"
     },
     "pewresearch.org": {
       "org": "Pew Research Center",
       "domain": "pewresearch.org",
-      "url": "https://www.pewresearch.org"
+      "url": "https://www.pewresearch.org",
+      "favicon": "/favicons/pewresearch.org.png"
     },
     "redline.digital": {
       "org": "redline.digital",
       "domain": "redline.digital",
-      "url": "https://redline.digital"
+      "url": "https://redline.digital",
+      "favicon": "/favicons/redline.digital.png"
     },
     "demandsage.com": {
       "org": "DemandSage",
       "domain": "demandsage.com",
-      "url": "https://www.demandsage.com"
+      "url": "https://www.demandsage.com",
+      "favicon": "/favicons/demandsage.com.png"
     },
     "gov.pl": {
       "org": "Ministerstwo Cyfryzacji",
       "domain": "gov.pl",
-      "url": "https://www.gov.pl"
+      "url": "https://www.gov.pl",
+      "favicon": "/favicons/gov.pl.png"
     },
     "bundestag.de": {
       "org": "Deutscher Bundestag",
       "domain": "bundestag.de",
-      "url": "https://www.bundestag.de"
+      "url": "https://www.bundestag.de",
+      "favicon": "/favicons/bundestag.de.png"
     },
     "pap.pl": {
       "org": "Polska Agencja Prasowa SA",
       "domain": "pap.pl",
-      "url": "https://www.pap.pl"
+      "url": "https://www.pap.pl",
+      "favicon": "/favicons/pap.pl.png"
     },
     "aje.io": {
       "org": "Al Jazeera",
       "domain": "aje.io",
-      "url": "https://aje.io"
+      "url": "https://aje.io",
+      "favicon": "/favicons/aje.io.png"
     },
     "globalsumudflotilla.org": {
       "org": "Global Sumud Flotilla",
       "domain": "globalsumudflotilla.org",
-      "url": "https://globalsumudflotilla.org"
+      "url": "https://globalsumudflotilla.org",
+      "favicon": "/favicons/globalsumudflotilla.org.png"
     },
     "edition.cnn.com": {
       "org": "edition.cnn.com",
       "domain": "edition.cnn.com",
-      "url": "https://edition.cnn.com"
+      "url": "https://edition.cnn.com",
+      "favicon": "/favicons/edition.cnn.com.png"
     },
     "jpost.com": {
       "org": "The Jerusalem Post | JPost.com",
       "domain": "jpost.com",
-      "url": "https://www.jpost.com"
+      "url": "https://www.jpost.com",
+      "favicon": "/favicons/jpost.com.png"
     },
     "aa.com.tr": {
       "org": "Anadolu",
       "domain": "aa.com.tr",
-      "url": "https://www.aa.com.tr"
+      "url": "https://www.aa.com.tr",
+      "favicon": "/favicons/aa.com.tr.png"
     },
     "theguardian.com": {
       "org": "the Guardian",
       "domain": "theguardian.com",
-      "url": "https://www.theguardian.com"
+      "url": "https://www.theguardian.com",
+      "favicon": "/favicons/theguardian.com.png"
     },
     "lsj.com.au": {
       "org": "lsj.com.au",
       "domain": "lsj.com.au",
-      "url": "https://lsj.com.au"
+      "url": "https://lsj.com.au",
+      "favicon": "/favicons/lsj.com.au.png"
     },
     "eu.ci": {
       "org": "eu.ci",
       "domain": "eu.ci",
-      "url": "https://eu.ci"
+      "url": "https://eu.ci",
+      "favicon": "/favicons/eu.ci.png"
     },
     "fightchatcontrol.eu": {
       "org": "fightchatcontrol.eu",
       "domain": "fightchatcontrol.eu",
-      "url": "https://fightchatcontrol.eu"
+      "url": "https://fightchatcontrol.eu",
+      "favicon": "/favicons/fightchatcontrol.eu.png"
     },
     "hide.me": {
       "org": "hide.me",
       "domain": "hide.me",
-      "url": "https://hide.me"
+      "url": "https://hide.me",
+      "favicon": "/favicons/hide.me.png"
     },
     "eur-lex.europa.eu": {
       "org": "eur-lex.europa.eu",
       "domain": "eur-lex.europa.eu",
-      "url": "https://eur-lex.europa.eu"
+      "url": "https://eur-lex.europa.eu",
+      "favicon": "/favicons/eur-lex.europa.eu.png"
     },
     "blog.google": {
       "org": "Google",
       "domain": "blog.google",
-      "url": "https://blog.google"
+      "url": "https://blog.google",
+      "favicon": "/favicons/blog.google.png"
     },
     "businessinsider.com.pl": {
       "org": "Business Insider Polska",
       "domain": "businessinsider.com.pl",
-      "url": "https://businessinsider.com.pl"
+      "url": "https://businessinsider.com.pl",
+      "favicon": "/favicons/businessinsider.com.pl.png"
     },
     "wiadomosci.wp.pl": {
       "org": "WP Wiadomości",
       "domain": "wiadomosci.wp.pl",
-      "url": "https://wiadomosci.wp.pl"
+      "url": "https://wiadomosci.wp.pl",
+      "favicon": "/favicons/wiadomosci.wp.pl.png"
     },
     "amp.cnn.com": {
       "org": "amp.cnn.com",
       "domain": "amp.cnn.com",
-      "url": "https://amp.cnn.com"
+      "url": "https://amp.cnn.com",
+      "favicon": "/favicons/amp.cnn.com.png"
     },
     "bbc.com": {
       "org": "bbc.com",
       "domain": "bbc.com",
-      "url": "https://www.bbc.com"
+      "url": "https://www.bbc.com",
+      "favicon": "/favicons/bbc.com.png"
     },
     "hrw.org": {
       "org": "Human Rights Watch",
       "domain": "hrw.org",
-      "url": "https://www.hrw.org"
+      "url": "https://www.hrw.org",
+      "favicon": "/favicons/hrw.org.png"
     },
     "npr.org": {
       "org": "NPR",
       "domain": "npr.org",
-      "url": "https://www.npr.org"
+      "url": "https://www.npr.org",
+      "favicon": "/favicons/npr.org.png"
     }
   }
 }

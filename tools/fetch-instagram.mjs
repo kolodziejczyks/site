@@ -194,7 +194,12 @@ export function buildCatalog(posts) {
       // best one seen for this domain.
       const existing = catalog[s.label];
       const org = s.siteName || existing?.org || domain;
-      catalog[s.label] = { org, domain, url: existing?.url || origin };
+      catalog[s.label] = {
+        org,
+        domain,
+        url: existing?.url || origin,
+        favicon: s.favicon || existing?.favicon,
+      };
     }
   }
   return catalog;
@@ -287,16 +292,45 @@ async function downloadProfilePic(warnings) {
   }
 }
 
-/** Fetch metadata for every unique source URL (in parallel) and attach it. */
+/**
+ * Download a domain's favicon (via Google's favicon service, reliable even for
+ * sites that block us) to public/favicons/{domain}.png. Returns local path or null.
+ */
+async function downloadFavicon(domain) {
+  const rel = `/favicons/${domain}.png`;
+  const abs = join(ROOT, 'public', 'favicons', `${domain}.png`);
+  if (await exists(abs)) return rel;
+  try {
+    const res = await fetch(
+      `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`,
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    await writeFile(abs, Buffer.from(await res.arrayBuffer()));
+    return rel;
+  } catch {
+    return null;
+  }
+}
+
+/** Fetch page metadata + favicon for every source (in parallel) and attach it. */
 async function enrichSources(posts, warnings) {
   const urls = [...new Set(posts.flatMap((p) => p.sources.map((s) => s.url)))];
   if (!urls.length) return;
-  console.log(`→ Fetching metadata for ${urls.length} source link(s)…`);
-  const entries = await Promise.all(urls.map(async (u) => [u, await fetchMeta(u)]));
-  const byUrl = new Map(entries);
+  const domains = [...new Set(posts.flatMap((p) => p.sources.map((s) => s.label)))];
+  console.log(`→ Fetching metadata for ${urls.length} link(s) + ${domains.length} favicon(s)…`);
+
+  const [metaEntries, favEntries] = await Promise.all([
+    Promise.all(urls.map(async (u) => [u, await fetchMeta(u)])),
+    Promise.all(domains.map(async (d) => [d, await downloadFavicon(d)])),
+  ]);
+  const byUrl = new Map(metaEntries);
+  const favByDomain = new Map(favEntries);
+
   let ok = 0;
   for (const post of posts) {
     for (const s of post.sources) {
+      const fav = favByDomain.get(s.label);
+      if (fav) s.favicon = fav;
       const m = byUrl.get(s.url);
       if (m && (m.title || m.siteName || m.description)) {
         if (m.title) s.title = m.title;
@@ -308,7 +342,7 @@ async function enrichSources(posts, warnings) {
       }
     }
   }
-  console.log(`  metadata resolved for ${ok} source link(s).`);
+  console.log(`  metadata resolved for ${ok}/${urls.length} link(s).`);
 }
 
 // ---------------------------------------------------------------------------
@@ -385,6 +419,7 @@ async function main() {
   }
 
   await mkdir(THUMBS_DIR, { recursive: true });
+  await mkdir(join(ROOT, 'public', 'favicons'), { recursive: true });
   await mkdir(dirname(OUT_FILE), { recursive: true });
 
   const warnings = [];

@@ -16,7 +16,11 @@
           [class.active]="i === selIndex()"
           (click)="select(i)"
         >
-          <span class="mono">{{ monogram(g.org) }}</span>
+          @if (g.favicon) {
+            <img class="fav" [src]="g.favicon" alt="" width="24" height="24" />
+          } @else {
+            <span class="mono">{{ monogram(g.org) }}</span>
+          }
           <span class="info">
             <span class="name">{{ g.org }}</span>
             <span class="sub">{{ g.domain }} · {{ g.posts.length }}</span>
@@ -30,14 +34,37 @@
         <div class="detail-head">
           <span class="cited">{{ citedIn() }}</span>
           <h2 class="serif">{{ g.org }}</h2>
-          <a class="domain" [href]="g.url" target="_blank" rel="noopener">
-            {{ g.domain }} <span class="msym">open_in_new</span>
-          </a>
         </div>
-        <div class="detail-grid">
-          @for (post of g.posts; track post.id) {
-            <app-post-card [post]="post" [compact]="true" />
-          }
+
+        <div class="detail-body">
+          <div class="links">
+            @for (s of g.links; track s.url) {
+              <a class="link-card" [href]="s.url" target="_blank" rel="noopener">
+                @if (s.favicon) {
+                  <img class="fav" [src]="s.favicon" alt="" width="28" height="28" />
+                }
+                <span class="link-body">
+                  <span class="src-title">
+                    {{ s.title || s.label }}
+                    <span class="msym">open_in_new</span>
+                  </span>
+                  <span class="src-domain">{{ s.siteName ? s.siteName + ' · ' : '' }}{{ s.label }}</span>
+                  @if (s.description) {
+                    <span class="src-desc">{{ s.description }}</span>
+                  }
+                </span>
+              </a>
+            }
+          </div>
+
+          <div class="posts-section">
+            <span class="posts-label">Powiązane wpisy</span>
+            <div class="detail-grid">
+              @for (post of g.posts; track post.id) {
+                <app-post-card [post]="post" [compact]="true" />
+              }
+            </div>
+          </div>
         </div>
       </div>
     }

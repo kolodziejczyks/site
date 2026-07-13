@@ -8,6 +8,8 @@ export interface Source {
   title?: string;
   siteName?: string;
   description?: string;
+  /** Local path to the site's favicon (e.g. /favicons/domain.png). */
+  favicon?: string;
 }
 
 export interface Post {
@@ -26,6 +28,7 @@ export interface CatalogEntry {
   org: string;
   domain: string;
   url: string;
+  favicon?: string;
 }
 
 export interface PostsData {
@@ -37,5 +40,7 @@ export interface PostsData {
 /** A source grouped with the posts (in the current filter range) that cite it. */
 export interface SourceGroup extends CatalogEntry {
   label: string;
+  /** Distinct cited links for this domain (with page metadata). */
+  links: Source[];
   posts: Post[];
 }
