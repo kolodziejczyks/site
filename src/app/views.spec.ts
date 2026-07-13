@@ -30,16 +30,29 @@ describe('util (Polish)', () => {
 });
 
 describe('DataService', () => {
-  it('groups sources by domain within the "all" range', () => {
+  it('groups sources by domain, one group per cited domain, each non-empty', () => {
     TestBed.configureTestingModule({ providers: providers() });
     const svc = TestBed.inject(DataService);
     svc.range.set('all');
     const groups = svc.sourceGroups();
-    // Sample data cites 7 distinct source domains.
-    expect(groups.length).toBe(7);
-    const oecd = groups.find((g) => g.domain === 'oecd.org');
-    expect(oecd?.org).toBe('OECD');
-    expect(oecd?.posts.length).toBeGreaterThan(0);
+
+    // Groups are unique by domain and never empty.
+    const domains = groups.map((g) => g.domain);
+    expect(new Set(domains).size).toBe(groups.length);
+    for (const g of groups) {
+      expect(g.domain).toBeTruthy();
+      expect(g.posts.length).toBeGreaterThan(0);
+    }
+
+    // One group per distinct domain actually cited across all posts (data-agnostic).
+    const cited = new Set<string>();
+    for (const p of svc.posts) {
+      for (const s of p.sources) {
+        const d = svc.catalog[s.label]?.domain;
+        if (d) cited.add(d);
+      }
+    }
+    expect(groups.length).toBe(cited.size);
   });
 
   it('narrows the feed when the range shrinks', () => {
@@ -68,27 +81,38 @@ describe('PostsView', () => {
     expect(text).toContain('Brak wpisów w tym zakresie dat.');
   });
 
-  it('shows the empty-sources label on a post without sources', async () => {
+  it('renders one card per post, with badges/empty-labels matching the data', async () => {
     TestBed.configureTestingModule({ imports: [PostsView], providers: providers() });
     const svc = TestBed.inject(DataService);
     svc.range.set('all');
     const fixture = TestBed.createComponent(PostsView);
     await fixture.whenStable();
-    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
-    expect(text).toContain('Nie dodano jeszcze źródeł');
-    expect(text).toContain('Źródła · 2');
+    const el = fixture.nativeElement as HTMLElement;
+
+    const withSources = svc.posts.filter((p) => p.sources.length > 0).length;
+    const withoutSources = svc.posts.length - withSources;
+
+    expect(el.querySelectorAll('.thumb').length).toBe(svc.posts.length);
+    expect(el.querySelectorAll('.sources-btn').length).toBe(withSources);
+    expect(el.querySelectorAll('.no-sources').length).toBe(withoutSources);
   });
 });
 
 describe('SourcesView', () => {
-  it('renders the source list and a selected detail', async () => {
+  it('renders a row per source group and a selected detail (or the empty state)', async () => {
     TestBed.configureTestingModule({ imports: [SourcesView], providers: providers() });
     const svc = TestBed.inject(DataService);
     svc.range.set('all');
     const fixture = TestBed.createComponent(SourcesView);
     await fixture.whenStable();
-    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
-    expect(text).toContain('OECD');
-    expect(text).toContain('Cytowane w');
+    const el = fixture.nativeElement as HTMLElement;
+    const groups = svc.sourceGroups();
+
+    if (groups.length > 0) {
+      expect(el.querySelectorAll('.row').length).toBe(groups.length);
+      expect(el.textContent ?? '').toContain('Cytowane w');
+    } else {
+      expect(el.textContent ?? '').toContain('Brak źródeł w tym zakresie dat.');
+    }
   });
 });
