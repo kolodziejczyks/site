@@ -38,7 +38,7 @@ export class DateFilter {
   readonly range = this.data.range;
 
   readonly chips: Chip[] = [
-    { key: 'all', label: 'Cały czas' },
+    { key: 'all', label: 'Wszystko' },
     { key: 'month', label: 'Ostatni miesiąc' },
     { key: '3months', label: 'Ostatnie 3 miesiące' },
     { key: 'year', label: 'Ten rok' },

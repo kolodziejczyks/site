@@ -5,7 +5,7 @@ import { PostCard } from '../post-card/post-card';
 import { plPosts } from '../util';
 
 const RANGE_LABELS: Record<RangeKey, string> = {
-  all: 'Cały czas',
+  all: 'Wszystko',
   month: 'Ostatni miesiąc',
   '3months': 'Ostatnie 3 miesiące',
   year: 'Ten rok',
