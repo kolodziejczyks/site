@@ -1,0 +1,32 @@
+<div class="chips" role="group" aria-label="Filtr dat">
+  @for (chip of chips; track chip.key) {
+    <button
+      type="button"
+      class="chip"
+      [class.active]="range() === chip.key"
+      (click)="select(chip.key)"
+    >
+      @if (range() === chip.key) {
+        <span class="msym check">check</span>
+      }
+      {{ chip.label }}
+    </button>
+  }
+</div>
+
+@if (range() === 'custom') {
+  <mat-form-field appearance="outline" class="range-field" subscriptSizing="dynamic">
+    <mat-label>Zakres dat</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input
+        matStartDate
+        placeholder="Od"
+        [value]="startDate"
+        (dateChange)="onStart($event.value)"
+      />
+      <input matEndDate placeholder="Do" [value]="endDate" (dateChange)="onEnd($event.value)" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker" />
+    <mat-date-range-picker #picker />
+  </mat-form-field>
+}

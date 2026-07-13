@@ -1,0 +1,19 @@
+<app-date-filter />
+
+<header class="head">
+  <h1 class="serif">{{ heading() }}</h1>
+  <span class="count">{{ count() }}</span>
+</header>
+
+@if (posts().length) {
+  <div class="grid">
+    @for (post of posts(); track post.id) {
+      <app-post-card [post]="post" />
+    }
+  </div>
+} @else {
+  <div class="empty">
+    <span class="msym">event_busy</span>
+    <p>Brak wpisów w tym zakresie dat.</p>
+  </div>
+}

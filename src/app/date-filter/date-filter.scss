@@ -1,0 +1,48 @@
+:host {
+  display: block;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--outline);
+  background: transparent;
+  color: var(--on-2);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+
+  &:hover {
+    background: var(--accent-soft);
+  }
+
+  &.active {
+    background: var(--accent-container);
+    color: var(--on-accent-container);
+    border-color: transparent;
+  }
+
+  .check {
+    font-size: 18px;
+  }
+}
+
+.range-field {
+  margin-top: 14px;
+  max-width: 340px;
+  width: 100%;
+}

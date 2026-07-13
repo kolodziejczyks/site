@@ -1,0 +1,115 @@
+// Angular Material 3 baseline. We keep mat.theme() for component structure, then
+// override the M3 *system* variables with the site's custom editorial palette
+// (from handoff_material_site/README.md) so Material components stay on-brand.
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: (
+        plain-family: 'Roboto Flex',
+        brand-family: 'Source Serif 4',
+      ),
+      density: 0,
+    )
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Custom palette tokens (light) + mapping onto Angular Material system vars.
+// ---------------------------------------------------------------------------
+:root {
+  --bg: #faf9fd;
+  --surface: #ffffff;
+  --surface-1: #f3f3fa;
+  --surface-2: #ededf4;
+  --on: #1a1b20;
+  --on-2: #44474e;
+  --on-3: #5f6268;
+  --outline: #c4c6d0;
+  --hairline: #e1e2e8;
+  --accent: #415f91;
+  --accent-container: #dae2f9;
+  --on-accent-container: #001b3e;
+  --accent-soft: #e3e9fb;
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+
+  // Map onto Material system variables so mat-* components follow the palette.
+  --mat-sys-primary: var(--accent);
+  --mat-sys-on-primary: var(--on-accent);
+  --mat-sys-surface: var(--surface);
+  --mat-sys-on-surface: var(--on);
+  --mat-sys-on-surface-variant: var(--on-2);
+  --mat-sys-surface-container-low: var(--surface-1);
+  --mat-sys-surface-container: var(--surface-1);
+  --mat-sys-surface-container-high: var(--surface-2);
+  --mat-sys-surface-container-highest: var(--surface-2);
+  --mat-sys-outline: var(--outline);
+  --mat-sys-outline-variant: var(--hairline);
+  --mat-sys-secondary-container: var(--accent-container);
+  --mat-sys-on-secondary-container: var(--on-accent-container);
+  --mat-sys-background: var(--bg);
+}
+
+// ---------------------------------------------------------------------------
+// Dark theme — toggled by [data-theme="dark"] on <html> (see ThemeService).
+// ---------------------------------------------------------------------------
+:root[data-theme='dark'] {
+  --bg: #111318;
+  --surface: #1a1c22;
+  --surface-1: #1e2027;
+  --surface-2: #23262e;
+  --on: #e3e2e9;
+  --on-2: #c4c6d0;
+  --on-3: #8e9199;
+  --outline: #43474e;
+  --hairline: #2a2d34;
+  --accent: #aac7ff;
+  --accent-container: #274777;
+  --on-accent-container: #d6e3ff;
+  --accent-soft: #223049;
+  --on-accent: #00325b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 6px 2px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+// Material Symbols icon font (via mat-icon fontSet or .msym).
+.material-symbols-outlined,
+.msym {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--bg);
+  color: var(--on);
+  font-family: 'Roboto Flex', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Editorial serif for display text.
+.serif {
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}

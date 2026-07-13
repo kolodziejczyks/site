@@ -1,0 +1,29 @@
+<section class="about">
+  <div class="text">
+    <span class="chip">O mnie</span>
+    <h1 class="serif">Relacje z Warszawy</h1>
+    <p class="lead">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+    </p>
+    <p class="body">
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.
+    </p>
+
+    <div class="facts">
+      @for (f of facts; track f.label) {
+        <div class="fact">
+          <span class="msym">{{ f.icon }}</span>
+          <span class="fact-label">{{ f.label }}</span>
+          <span class="fact-value">{{ f.value }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="portrait">
+    <img src="/portrait.jpg" alt="Portret — Szymon Kołodziejczyk" />
+  </div>
+</section>

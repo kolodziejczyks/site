@@ -1,0 +1,50 @@
+<app-date-filter />
+
+<header class="head">
+  <h1 class="serif">Źródła</h1>
+  <span class="count">Wybierz źródło, aby zobaczyć powiązane wpisy</span>
+</header>
+
+@if (groups().length) {
+  <div class="pick-see">
+    <ul class="list" role="listbox" aria-label="Lista źródeł">
+      @for (g of groups(); track g.domain; let i = $index) {
+        <li
+          role="option"
+          [attr.aria-selected]="i === selIndex()"
+          class="row"
+          [class.active]="i === selIndex()"
+          (click)="select(i)"
+        >
+          <span class="mono">{{ monogram(g.org) }}</span>
+          <span class="info">
+            <span class="name">{{ g.org }}</span>
+            <span class="sub">{{ g.domain }} · {{ g.posts.length }}</span>
+          </span>
+        </li>
+      }
+    </ul>
+
+    @if (selected(); as g) {
+      <div class="detail">
+        <div class="detail-head">
+          <span class="cited">{{ citedIn() }}</span>
+          <h2 class="serif">{{ g.org }}</h2>
+          <a class="domain" [href]="g.url" target="_blank" rel="noopener">
+            {{ g.domain }} <span class="msym">open_in_new</span>
+          </a>
+        </div>
+        <div class="detail-grid">
+          @for (post of g.posts; track post.id) {
+            <app-post-card [post]="post" [compact]="true" />
+          }
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="empty">
+    <span class="msym">event_busy</span>
+    <p>Brak źródeł w tym zakresie dat.</p>
+  </div>
+}

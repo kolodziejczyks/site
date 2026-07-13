@@ -1,0 +1,86 @@
+<div class="shell">
+  <!-- Desktop navigation rail -->
+  <nav class="rail" aria-label="Nawigacja główna">
+    <button type="button" class="avatar" (click)="setTab('about')" aria-label="O mnie">
+      <img src="/portrait.jpg" alt="" />
+    </button>
+    @for (item of nav; track item.tab) {
+      <button
+        type="button"
+        class="rail-item"
+        [class.active]="tab() === item.tab"
+        (click)="setTab(item.tab)"
+      >
+        <span class="pill"><span class="msym">{{ item.icon }}</span></span>
+        <span class="label">{{ item.label }}</span>
+      </button>
+    }
+  </nav>
+
+  <div class="main-col">
+    <!-- Top app bar -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="name serif">Szymon Kołodziejczyk</span>
+        <span class="subtitle">{{ subtitle }}</span>
+      </div>
+      <div class="actions">
+        <button type="button" class="icon-btn" (click)="toggleTheme()" aria-label="Przełącz motyw">
+          <span class="msym">{{ theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</span>
+        </button>
+        <div class="socials">
+          @for (s of socials; track s.label) {
+            <a
+              class="icon-btn"
+              [href]="s.href"
+              target="_blank"
+              rel="noopener"
+              [attr.aria-label]="s.label"
+            >
+              @if (s.path) {
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path
+                    [attr.fill-rule]="s.evenOdd ? 'evenodd' : null"
+                    [attr.d]="s.path"
+                    fill="currentColor"
+                  />
+                </svg>
+              } @else {
+                <span class="msym">{{ s.glyph }}</span>
+              }
+            </a>
+          }
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      @switch (tab()) {
+        @case ('posts') {
+          <app-posts-view />
+        }
+        @case ('sources') {
+          <app-sources-view />
+        }
+        @case ('about') {
+          <app-about-view />
+        }
+      }
+    </main>
+  </div>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="bottom-nav" aria-label="Nawigacja główna">
+    @for (item of nav; track item.tab) {
+      <button
+        type="button"
+        class="bottom-item"
+        [class.active]="tab() === item.tab"
+        (click)="setTab(item.tab)"
+      >
+        <span class="pill"><span class="msym">{{ item.icon }}</span></span>
+        <span class="label">{{ item.label }}</span>
+      </button>
+    }
+  </nav>
+</div>

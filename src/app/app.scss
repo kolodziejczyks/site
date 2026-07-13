@@ -1,0 +1,246 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  min-height: 100vh;
+}
+
+// ---------------------------------------------------------------------------
+// Navigation rail (desktop)
+// ---------------------------------------------------------------------------
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  background: var(--surface-1);
+  border-right: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.avatar {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 12px;
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.rail-item {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 6px 0;
+  color: var(--on-2);
+
+  .pill {
+    width: 56px;
+    height: 32px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: background 0.15s;
+
+    .msym {
+      font-size: 24px;
+    }
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &:hover .pill {
+    background: var(--accent-soft);
+  }
+
+  &.active {
+    color: var(--on-accent-container);
+    .pill {
+      background: var(--accent-container);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Top app bar
+// ---------------------------------------------------------------------------
+.main-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 32px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  .name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--on);
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--on-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--on-2);
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--surface-2);
+    color: var(--on);
+  }
+
+  .msym {
+    font-size: 22px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Content
+// ---------------------------------------------------------------------------
+.content {
+  flex: 1;
+  padding: 8px 40px 64px;
+  max-width: 1600px;
+  width: 100%;
+}
+
+// ---------------------------------------------------------------------------
+// Bottom navigation (mobile)
+// ---------------------------------------------------------------------------
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .rail {
+    display: none;
+  }
+  .topbar {
+    padding: 12px 16px;
+  }
+  .content {
+    padding: 8px 16px 88px;
+  }
+  .brand .subtitle {
+    display: none;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+    background: var(--surface-1);
+    border-top: 1px solid var(--hairline);
+    padding: 8px 0 10px;
+  }
+  .bottom-item {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--on-2);
+    flex: 1;
+
+    .pill {
+      width: 64px;
+      height: 32px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      .msym {
+        font-size: 24px;
+      }
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    &.active {
+      color: var(--on-accent-container);
+      .pill {
+        background: var(--accent-container);
+      }
+    }
+  }
+}
