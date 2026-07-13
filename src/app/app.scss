@@ -193,8 +193,36 @@
   .content {
     padding: 8px 16px 88px;
   }
+  .brand {
+    flex: 1;
+    min-width: 0;
+  }
   .brand .subtitle {
     display: none;
+  }
+  .brand .name {
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  // Compact the theme toggle + social links so they don't dominate the header.
+  .actions {
+    gap: 0;
+  }
+  .socials {
+    gap: 0;
+  }
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .icon-btn .msym {
+    font-size: 19px;
+  }
+  .icon-btn svg {
+    width: 16px;
+    height: 16px;
   }
 
   .bottom-nav {
