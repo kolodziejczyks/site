@@ -2,10 +2,35 @@
 
 <header class="head">
   <h1 class="serif">Źródła</h1>
-  <span class="count">Wybierz źródło, aby zobaczyć powiązane wpisy</span>
+  <mat-button-toggle-group
+    class="view-toggle"
+    [value]="view()"
+    (change)="setView($event.value)"
+    aria-label="Widok źródeł"
+    hideSingleSelectionIndicator
+  >
+    <mat-button-toggle value="list">
+      <span class="msym">list</span> Lista
+    </mat-button-toggle>
+    <mat-button-toggle value="chart">
+      <span class="msym">bar_chart</span> Wykresy
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 </header>
 
-@if (groups().length) {
+@if (!groups().length) {
+  <div class="empty">
+    <span class="msym">event_busy</span>
+    <p>Brak źródeł w tym zakresie dat.</p>
+  </div>
+} @else if (view() === 'chart') {
+  <div class="charts">
+    <app-sources-chart [groups]="groups()" [limit]="10" title="Najczęściej cytowane" />
+    <div class="all-chart">
+      <app-sources-chart [groups]="groups()" title="Wszystkie źródła" />
+    </div>
+  </div>
+} @else {
   <div class="pick-see">
     <ul class="list" role="listbox" aria-label="Lista źródeł">
       @for (g of groups(); track g.domain; let i = $index) {
@@ -68,10 +93,5 @@
         </div>
       </div>
     }
-  </div>
-} @else {
-  <div class="empty">
-    <span class="msym">event_busy</span>
-    <p>Brak źródeł w tym zakresie dat.</p>
   </div>
 }

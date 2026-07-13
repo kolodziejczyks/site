@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DataService } from '../data.service';
 import { DateFilter } from '../date-filter/date-filter';
 import { PostCard } from '../post-card/post-card';
+import { SourcesChart } from '../sources-chart/sources-chart';
 import { plCitedIn } from '../util';
+
+type SourcesViewMode = 'list' | 'chart';
 
 @Component({
   selector: 'app-sources-view',
-  imports: [DateFilter, PostCard],
+  imports: [DateFilter, PostCard, SourcesChart, MatButtonToggleModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sources-view.html',
   styleUrl: './sources-view.scss',
@@ -14,6 +18,11 @@ import { plCitedIn } from '../util';
 export class SourcesView {
   private readonly data = inject(DataService);
   readonly groups = this.data.sourceGroups;
+
+  readonly view = signal<SourcesViewMode>('list');
+  setView(v: SourcesViewMode): void {
+    this.view.set(v);
+  }
 
   private readonly sel = signal(0);
   /** Selected index clamped to the current list length. */

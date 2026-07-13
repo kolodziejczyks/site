@@ -55,6 +55,16 @@ describe('DataService', () => {
     expect(groups.length).toBe(cited.size);
   });
 
+  it('ranks groups most-cited first (descending, non-increasing)', () => {
+    TestBed.configureTestingModule({ providers: providers() });
+    const svc = TestBed.inject(DataService);
+    svc.range.set('all');
+    const counts = svc.sourceGroups().map((g) => g.posts.length);
+    for (let i = 1; i < counts.length; i++) {
+      expect(counts[i]).toBeLessThanOrEqual(counts[i - 1]);
+    }
+  });
+
   it('narrows the feed when the range shrinks', () => {
     TestBed.configureTestingModule({ providers: providers() });
     const svc = TestBed.inject(DataService);
@@ -113,6 +123,22 @@ describe('SourcesView', () => {
       expect(el.textContent ?? '').toContain('Cytowane w');
     } else {
       expect(el.textContent ?? '').toContain('Brak źródeł w tym zakresie dat.');
+    }
+  });
+
+  it('renders a ranked bar per source in chart view', async () => {
+    TestBed.configureTestingModule({ imports: [SourcesView], providers: providers() });
+    const svc = TestBed.inject(DataService);
+    svc.range.set('all');
+    const fixture = TestBed.createComponent(SourcesView);
+    fixture.componentInstance.setView('chart');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const groups = svc.sourceGroups();
+    if (groups.length > 0) {
+      // Two charts render: Top-10 (capped) + all sources.
+      const topRows = Math.min(10, groups.length);
+      expect(el.querySelectorAll('.bar-row').length).toBe(topRows + groups.length);
     }
   });
 });

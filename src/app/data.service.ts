@@ -69,7 +69,7 @@ export class DataService {
         }
       }
     }
-    // Preserve catalog declaration order.
+    // Collect in catalog declaration order…
     const seen = new Set<string>();
     const out: SourceGroup[] = [];
     for (const label of orderedLabels) {
@@ -80,6 +80,8 @@ export class DataService {
         out.push(group);
       }
     }
+    // …then rank most-cited first (stable sort keeps catalog order on ties).
+    out.sort((a, b) => b.posts.length - a.posts.length);
     return out;
   });
 }

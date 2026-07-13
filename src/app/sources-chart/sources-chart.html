@@ -1,0 +1,30 @@
+<section class="chart">
+  @if (title()) {
+    <h2 class="chart-title serif">{{ title() }}</h2>
+  }
+
+  <div class="rows">
+    @for (bar of bars(); track bar.group.domain) {
+      <div class="bar-row" role="img" [attr.aria-label]="bar.group.org + ': ' + bar.label">
+        <div class="ident">
+          @if (bar.group.favicon) {
+            <img class="fav" [src]="bar.group.favicon" alt="" width="20" height="20" />
+          } @else {
+            <span class="mono">{{ monogram(bar.group.org) }}</span>
+          }
+          <span class="name" [title]="bar.group.org">{{ bar.group.org }}</span>
+        </div>
+
+        <div class="track" [title]="bar.group.org + ' — ' + bar.label">
+          <div class="fill" [style.width.%]="bar.pct"></div>
+        </div>
+
+        <span class="count">{{ bar.count }}</span>
+      </div>
+    }
+  </div>
+
+  @if (hidden() > 0) {
+    <p class="more">+{{ hidden() }} więcej w widoku „Wszystkie źródła"</p>
+  }
+</section>
