@@ -323,4 +323,19 @@
   .back-btn {
     display: inline-flex;
   }
+
+  // No pre-selected highlight in the standalone mobile list (nothing is "open").
+  .row.active {
+    background: transparent;
+    .name {
+      color: var(--on);
+    }
+    .mono {
+      background: var(--surface-2);
+      color: var(--on-2);
+    }
+  }
+  .row.active:hover {
+    background: var(--accent-soft);
+  }
 }
