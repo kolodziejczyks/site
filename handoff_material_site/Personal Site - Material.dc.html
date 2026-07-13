@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --bg:#FAF9FD; --surface:#FFFFFF; --surface-1:#F3F3FA; --surface-2:#EDEDF4;
+    --on:#1A1B20; --on-2:#44474E; --on-3:#5F6268;
+    --outline:#C4C6D0; --hairline:#E1E2E8;
+    --accent:#415F91; --accent-container:#DAE2F9; --on-accent-container:#001B3E; --accent-soft:#E3E9FB;
+    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.12);
+  }
+  [data-theme="dark"] {
+    --bg:#111318; --surface:#1A1C22; --surface-1:#1E2027; --surface-2:#23262E;
+    --on:#E3E2E9; --on-2:#C4C6D0; --on-3:#8E9199;
+    --outline:#43474E; --hairline:#2A2D34;
+    --accent:#AAC7FF; --accent-container:#274777; --on-accent-container:#D6E3FF; --accent-soft:#223049;
+    --shadow:0 1px 2px rgba(0,0,0,0.6), 0 1px 3px 1px rgba(0,0,0,0.4);
+  }
+  html, body { margin: 0; background: var(--bg); }
+  html:has([data-theme="dark"]) { background: #111318; }
+  image-slot { display: block; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  .msym { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; -webkit-font-feature-settings: 'liga'; }
+  [data-role="rail"], [data-role="bottomnav"] { display: none; }
+  @media (min-width: 900px) { [data-role="rail"] { display: flex !important; } }
+  @media (min-width: 1500px) {
+    [data-role="posts-grid"] { grid-template-columns: repeat(5, 1fr) !important; }
+    [data-role="about-grid"] { max-width: 1320px !important; }
+    [data-role="portrait"] { height: 580px !important; }
+  }
+  @media (min-width: 2000px) {
+    [data-role="posts-grid"] { grid-template-columns: repeat(6, 1fr) !important; }
+    [data-role="about-grid"] { max-width: 1560px !important; }
+    [data-role="portrait"] { height: 660px !important; }
+  }
+  @media (max-width: 899px) {
+    [data-role="bottomnav"] { display: flex !important; }
+    [data-role="root"] { grid-template-columns: 1fr !important; }
+    [data-role="main"] { padding: 16px 16px 96px !important; }
+    [data-role="about-grid"] { grid-template-columns: 1fr !important; }
+    [data-role="portrait"] { height: 300px !important; }
+    [data-role="posts-grid"] { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important; }
+    [data-role="sources-grid"] { grid-template-columns: 1fr !important; }
+    [data-role="sources-detail"] { height: auto !important; max-height: 70vh !important; }
+    [data-role="sources-posts"] { grid-template-columns: repeat(3, 1fr) !important; }
+  }
+</style>
+</helmet>
+
+<div data-role="root" data-theme="{{ theme }}" style="min-height:100vh; width:100%; display:grid; grid-template-columns:88px 1fr; background:var(--bg); color:var(--on); font-family:'Roboto Flex',sans-serif;">
+
+  <!-- ===================== NAVIGATION RAIL (desktop) ===================== -->
+  <nav data-role="rail" style="position:sticky; top:0; align-self:start; height:100vh; flex-direction:column; align-items:center; background:var(--surface-1); padding:22px 0; gap:12px;">
+    <div onClick="{{ goAbout }}" style="cursor:pointer; border-radius:50%; line-height:0;"><image-slot id="mat-avatar" src="uploads/photo-1783179165474.jpg" shape="circle" style="width:44px; height:44px; flex:none;" placeholder="Ja"></image-slot></div>
+    <div style="height:12px;"></div>
+    <button onClick="{{ goPosts }}" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; width:100%; padding:0;">
+      <div style="width:56px; height:32px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ postsPill }}; transition:background .15s;"><span class="msym" style="font-size:24px; color:{{ postsIcon }};">grid_view</span></div>
+      <span style="font-size:12px; font-weight:500; color:{{ postsLabel }};">Wpisy</span>
+    </button>
+    <button onClick="{{ goSources }}" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; width:100%; padding:0;">
+      <div style="width:56px; height:32px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ sourcesPill }}; transition:background .15s;"><span class="msym" style="font-size:24px; color:{{ sourcesIcon }};">menu_book</span></div>
+      <span style="font-size:12px; font-weight:500; color:{{ sourcesLabel }};">Źródła</span>
+    </button>
+    <button onClick="{{ goAbout }}" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; width:100%; padding:0;">
+      <div style="width:56px; height:32px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ aboutPill }}; transition:background .15s;"><span class="msym" style="font-size:24px; color:{{ aboutIcon }};">person</span></div>
+      <span style="font-size:12px; font-weight:500; color:{{ aboutLabel }};">O mnie</span>
+    </button>
+  </nav>
+
+  <!-- ===================== MAIN ===================== -->
+  <main data-role="main" style="padding:28px 40px 56px;">
+
+    <!-- top app bar -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+      <div style="display:flex; flex-direction:column;">
+        <div style="font-family:'Source Serif 4',serif; font-size:28px; font-weight:500; line-height:1.1;">Szymon Kołodziejczyk</div>
+        <div style="font-size:14px; color:var(--on-2); margin-top:2px;">@niewiemniczego · Dziennikarstwo · Technologia · Polityka</div>
+      </div>
+      <div style="display:flex; gap:4px; align-items:center;">
+        <button onClick="{{ toggleTheme }}" aria-label="Przełącz motyw" style="width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; background:none; border:none; cursor:pointer; color:var(--accent); margin-right:6px;" style-hover="background:var(--accent-container);"><span class="msym" style="font-size:22px;">{{ themeIcon }}</span></button>
+        <a href="https://instagram.com/niewiemniczego" aria-label="Instagram" style="width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--accent);" style-hover="background:var(--accent-container);"><svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+        <a href="https://youtube.com/@niewiemniczego" aria-label="YouTube" style="width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--accent);" style-hover="background:var(--accent-container);"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://tiktok.com/@niewiemniczego" aria-label="TikTok" style="width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--accent);" style-hover="background:var(--accent-container);"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <a href="https://linkedin.com/in/szymonkolodziejczyk" aria-label="LinkedIn" style="width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--accent);" style-hover="background:var(--accent-container);"><svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:hej@szymonk.pl" aria-label="Email" style="width:40px; height:40px; border-radius:20px; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--accent);" style-hover="background:var(--accent-container);"><span class="msym" style="font-size:22px;">mail</span></a>
+      </div>
+    </div>
+
+    <!-- LATEST POSTS -->
+    <sc-if value="{{ isPosts }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <!-- FILTER BAR -->
+        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:28px;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span class="msym" style="font-size:20px; color:var(--on-2); margin-right:2px;">filter_list</span>
+            <button onClick="{{ setAll }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ allBg }}; color:{{ allFg }}; border:{{ allBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ allActive }}" hint-placeholder-val="{{ true }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Cały czas</button>
+            <button onClick="{{ setMonth }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ monthBg }}; color:{{ monthFg }}; border:{{ monthBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ monthActive }}" hint-placeholder-val="{{ false }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Ostatni miesiąc</button>
+            <button onClick="{{ setM3 }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ m3Bg }}; color:{{ m3Fg }}; border:{{ m3Border }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ m3Active }}" hint-placeholder-val="{{ false }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Ostatnie 3 miesiące</button>
+            <button onClick="{{ setYear }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ yearBg }}; color:{{ yearFg }}; border:{{ yearBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ yearActive }}" hint-placeholder-val="{{ false }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Ten rok</button>
+            <button onClick="{{ setCustom }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ customBg }}; color:{{ customFg }}; border:{{ customBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><span class="msym" style="font-size:16px;">date_range</span>Zakres</button>
+          </div>
+          <sc-if value="{{ isCustom }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; background:var(--surface-1); border-radius:16px; padding:14px 18px;">
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--on-3);">Od<input type="date" value="{{ fromVal }}" onChange="{{ setFrom }}" style="font-family:'Roboto Flex',sans-serif; font-size:14px; color:var(--on); border:1px solid var(--outline); border-radius:8px; padding:8px 10px; background:#fff;"></label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--on-3);">Do<input type="date" value="{{ toVal }}" onChange="{{ setTo }}" style="font-family:'Roboto Flex',sans-serif; font-size:14px; color:var(--on); border:1px solid var(--outline); border-radius:8px; padding:8px 10px; background:#fff;"></label>
+            </div>
+          </sc-if>
+        </div>
+
+        <!-- POSTS -->
+        <sc-if value="{{ hasPosts }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-bottom:12px;">
+            <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
+              <div style="font-family:'Source Serif 4',serif; font-size:22px; font-weight:500;">{{ sectionLabel }}</div>
+              <div style="font-size:12px; color:var(--on-3); letter-spacing:0.04em;">{{ postsCountLabel }}</div>
+            </div>
+            <div data-role="posts-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:20px;">
+              <sc-for list="{{ filteredList }}" as="post" hint-placeholder-count="6">
+                <div onClick="{{ post.openPost }}" style="display:flex; flex-direction:column; background:var(--surface); border-radius:16px; overflow:hidden; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.12);" style-hover="box-shadow:0 2px 6px 2px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.3);">
+                  <div style="position:relative;">
+                    <image-slot id="{{ post.slotId }}" style="width:100%; aspect-ratio:4/5;" placeholder="Wpis"></image-slot>
+                    <div style="position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.55); color:#fff; font-size:11px; font-weight:500; letter-spacing:0.04em; padding:4px 10px; border-radius:8px; text-transform:uppercase;">{{ post.platform }}</div>
+                  </div>
+                  <div style="padding:12px 14px 14px; display:flex; flex-direction:column; gap:8px; flex:1;">
+                    <div style="font-size:15px; line-height:1.35; color:var(--on);">{{ post.title }}</div>
+                    <div style="font-size:12px; color:var(--on-3);">{{ post.dateLabel }}</div>
+                    <sc-if value="{{ post.hasSources }}" hint-placeholder-val="{{ false }}">
+                      <button onClick="{{ post.onOpen }}" style="align-self:flex-start; margin-top:auto; display:flex; align-items:center; gap:6px; background:var(--accent-container); color:var(--on-accent-container); border:none; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px 7px 12px; border-radius:18px;"><span class="msym" style="font-size:18px;">link</span>Źródła · {{ post.srcCount }}</button>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- EMPTY -->
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:64px 20px; color:var(--on-3);">
+            <span class="msym" style="font-size:40px;">event_busy</span>
+            <div style="font-size:16px;">Brak wpisów w tym zakresie dat.</div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- ABOUT -->
+    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+      <div data-role="about-grid" style="display:grid; grid-template-columns:1.3fr 0.7fr; gap:28px; align-items:start; max-width:1040px;">
+        <div style="background:var(--surface); border-radius:24px; padding:36px 36px 32px; box-shadow:0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.12);">
+          <div style="display:inline-flex; align-items:center; gap:8px; background:var(--accent-container); color:var(--on-accent-container); font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:6px 14px; border-radius:16px;"><span class="msym" style="font-size:16px;">person</span>O mnie</div>
+          <div style="font-family:'Source Serif 4',serif; font-size:40px; font-weight:500; line-height:1.05; margin:20px 0 16px;">Relacje z Warszawy</div>
+          <p style="font-size:18px; line-height:1.55; color:var(--on); margin:0 0 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — I cover where journalism, technology, and politics collide.</p>
+          <p style="font-size:15px; line-height:1.6; color:var(--on-2); margin:0;">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
+            <div style="flex:1; min-width:120px; background:var(--surface-1); border-radius:16px; padding:16px;"><div style="font-size:12px; color:var(--on-3); text-transform:uppercase; letter-spacing:0.06em;">Mieszkam w</div><div style="font-size:17px; font-weight:500; margin-top:6px;">Warszawa</div></div>
+            <div style="flex:1; min-width:120px; background:var(--surface-1); border-radius:16px; padding:16px;"><div style="font-size:12px; color:var(--on-3); text-transform:uppercase; letter-spacing:0.06em;">Tematy</div><div style="font-size:17px; font-weight:500; margin-top:6px;">Dziennikarstwo · Tech</div></div>
+            <div style="flex:1; min-width:120px; background:var(--surface-1); border-radius:16px; padding:16px;"><div style="font-size:12px; color:var(--on-3); text-transform:uppercase; letter-spacing:0.06em;">Od</div><div style="font-size:17px; font-weight:500; margin-top:6px;">2019</div></div>
+          </div>
+        </div>
+        <image-slot id="mat-portrait" data-role="portrait" src="uploads/photo-1783179165474.jpg" shape="rect" radius="24" style="width:100%; height:480px;" placeholder="Portret"></image-slot>
+      </div>
+    </sc-if>
+
+    <!-- SOURCES (Pick & see) -->
+    <sc-if value="{{ isSources }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;">
+          <div style="font-family:'Source Serif 4',serif; font-size:22px; font-weight:500;">Źródła</div>
+          <div style="font-size:12px; color:var(--on-3); letter-spacing:0.04em;">Wybierz źródło, aby zobaczyć powiązane wpisy</div>
+        </div>
+
+        <!-- date filter (shared with Posts) -->
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:22px;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span class="msym" style="font-size:20px; color:var(--on-2); margin-right:2px;">filter_list</span>
+            <button onClick="{{ setAll }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ allBg }}; color:{{ allFg }}; border:{{ allBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ allActive }}" hint-placeholder-val="{{ false }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Cały czas</button>
+            <button onClick="{{ setMonth }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ monthBg }}; color:{{ monthFg }}; border:{{ monthBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ monthActive }}" hint-placeholder-val="{{ true }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Ostatni miesiąc</button>
+            <button onClick="{{ setM3 }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ m3Bg }}; color:{{ m3Fg }}; border:{{ m3Border }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ m3Active }}" hint-placeholder-val="{{ false }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Ostatnie 3 miesiące</button>
+            <button onClick="{{ setYear }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ yearBg }}; color:{{ yearFg }}; border:{{ yearBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><sc-if value="{{ yearActive }}" hint-placeholder-val="{{ false }}"><span class="msym" style="font-size:16px;">check</span></sc-if>Ten rok</button>
+            <button onClick="{{ setCustom }}" style="display:inline-flex; align-items:center; gap:6px; background:{{ customBg }}; color:{{ customFg }}; border:{{ customBorder }}; cursor:pointer; font-family:'Roboto Flex',sans-serif; font-size:13px; font-weight:500; padding:7px 14px; border-radius:8px;"><span class="msym" style="font-size:16px;">date_range</span>Zakres</button>
+          </div>
+          <sc-if value="{{ isCustom }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; background:var(--surface-1); border-radius:16px; padding:14px 18px;">
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--on-3);">Od<input type="date" value="{{ fromVal }}" onChange="{{ setFrom }}" style="font-family:'Roboto Flex',sans-serif; font-size:14px; color:var(--on); border:1px solid var(--outline); border-radius:8px; padding:8px 10px; background:#fff;"></label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--on-3);">Do<input type="date" value="{{ toVal }}" onChange="{{ setTo }}" style="font-family:'Roboto Flex',sans-serif; font-size:14px; color:var(--on); border:1px solid var(--outline); border-radius:8px; padding:8px 10px; background:#fff;"></label>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ hasSourceList }}" hint-placeholder-val="{{ true }}">
+        <div data-role="sources-grid" style="display:grid; grid-template-columns:300px 1fr; gap:24px; align-items:start;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <sc-for list="{{ sourceList }}" as="s" hint-placeholder-count="6">
+              <button onClick="{{ s.selectSrc }}" style="display:flex; align-items:center; gap:12px; background:{{ s.rowBg }}; color:{{ s.rowFg }}; border:none; cursor:pointer; text-align:left; padding:12px 14px; border-radius:14px; font-family:'Roboto Flex',sans-serif;">
+                <div style="width:36px; height:36px; border-radius:10px; background:var(--accent-container); color:var(--on-accent-container); display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',serif; font-size:16px; font-weight:600; flex:none;">{{ s.initial }}</div>
+                <div style="flex:1; min-width:0;"><div style="font-size:15px; font-weight:500;">{{ s.org }}</div><div style="font-size:12px; color:var(--on-3);">{{ s.domain }} · {{ s.countLabel }}</div></div>
+              </button>
+            </sc-for>
+          </div>
+          <div data-role="sources-detail" style="background:var(--surface); border-radius:24px; padding:28px; box-shadow:0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.12); height:560px; display:flex; flex-direction:column;">
+            <div style="font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent);">Cytowane w {{ detSrcCount }}</div>
+            <div style="font-family:'Source Serif 4',serif; font-size:28px; font-weight:500; margin:4px 0 2px;">{{ detSrcOrg }}</div>
+            <a href="{{ detSrcUrl }}" target="_blank" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--accent); font-weight:500; text-decoration:none; margin-bottom:20px;">{{ detSrcDomain }}<span class="msym" style="font-size:15px;">open_in_new</span></a>
+            <div data-role="sources-posts" style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; overflow-y:auto; padding-right:6px; margin-right:-6px;">
+              <sc-for list="{{ detSrcPosts }}" as="p" hint-placeholder-count="4">
+                <a href="#" onClick="{{ p.openPost }}" style="display:flex; flex-direction:column; gap:6px; text-decoration:none; color:var(--on); cursor:pointer;">
+                  <div style="position:relative;">
+                    <image-slot id="{{ p.slotId }}" style="width:100%; aspect-ratio:4/5; border-radius:12px;" placeholder="Miniatura"></image-slot>
+                    <span style="position:absolute; top:7px; left:7px; font-size:9px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:#fff; background:rgba(0,0,0,0.55); padding:3px 7px; border-radius:6px;">{{ p.platform }}</span>
+                  </div>
+                  <div style="font-size:11px; color:var(--on-3);">{{ p.dateLabel }}</div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isSourcesEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:64px 20px; color:var(--on-3);">
+            <span class="msym" style="font-size:40px;">event_busy</span>
+            <div style="font-size:16px;">Brak źródeł w tym zakresie dat.</div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+  </main>
+
+  <!-- ===================== BOTTOM NAV (mobile) ===================== -->
+  <nav data-role="bottomnav" style="position:fixed; left:0; right:0; bottom:0; z-index:30; background:var(--surface-1); height:80px; align-items:center; justify-content:space-around; padding:0 12px; box-shadow:0 -1px 3px rgba(0,0,0,0.08);">
+    <button onClick="{{ goPosts }}" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+      <div style="width:64px; height:32px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ postsPill }};"><span class="msym" style="font-size:24px; color:{{ postsIcon }};">grid_view</span></div>
+      <span style="font-size:12px; font-weight:500; color:{{ postsLabel }};">Wpisy</span>
+    </button>
+    <button onClick="{{ goSources }}" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+      <div style="width:64px; height:32px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ sourcesPill }};"><span class="msym" style="font-size:24px; color:{{ sourcesIcon }};">menu_book</span></div>
+      <span style="font-size:12px; font-weight:500; color:{{ sourcesLabel }};">Źródła</span>
+    </button>
+    <button onClick="{{ goAbout }}" style="background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+      <div style="width:64px; height:32px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ aboutPill }};"><span class="msym" style="font-size:24px; color:{{ aboutIcon }};">person</span></div>
+      <span style="font-size:12px; font-weight:500; color:{{ aboutLabel }};">O mnie</span>
+    </button>
+  </nav>
+
+  <!-- ===================== SOURCES DIALOG ===================== -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed; inset:0; background:rgba(0,0,0,0.32); display:flex; align-items:center; justify-content:center; z-index:60; padding:20px;">
+      <div onClick="{{ stop }}" style="width:420px; max-width:100%; background:var(--surface-1); border-radius:28px; padding:24px 24px 16px; box-shadow:0 8px 12px 6px rgba(0,0,0,0.15), 0 4px 4px rgba(0,0,0,0.3);">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;"><span class="msym" style="font-size:24px; color:var(--accent);">link</span><div style="font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent);">Źródła</div></div>
+        <div style="font-family:'Source Serif 4',serif; font-size:24px; font-weight:500; line-height:1.15; color:var(--on);">{{ modalTitle }}</div>
+        <div style="font-size:13px; color:var(--on-3); text-transform:uppercase; letter-spacing:0.05em; margin:4px 0 12px;">{{ modalPlatform }}</div>
+        <div style="display:flex; flex-direction:column;">
+          <sc-for list="{{ modalSources }}" as="src" hint-placeholder-count="2">
+            <a href="{{ src.url }}" target="_blank" style="display:flex; align-items:center; gap:14px; padding:14px 8px; border-radius:12px; text-decoration:none; color:var(--on);" style-hover="background:#E7E8EE;">
+              <span style="width:28px; height:28px; border-radius:14px; background:var(--accent-container); color:var(--on-accent-container); font-size:12px; font-weight:500; display:flex; align-items:center; justify-content:center; flex:none;">{{ src.n }}</span>
+              <span style="font-size:15px; line-height:1.35; flex:1;">{{ src.label }}</span>
+              <span class="msym" style="font-size:18px; color:var(--accent);">open_in_new</span>
+            </a>
+          </sc-for>
+        </div>
+        <div style="display:flex; justify-content:flex-end; margin-top:8px;">
+          <button onClick="{{ closeModal }}" style="background:none; border:none; cursor:pointer; color:var(--accent); font-family:'Roboto Flex',sans-serif; font-size:14px; font-weight:500; padding:10px 16px; border-radius:20px;">Zamknij</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'posts', openId: null, range: 'month', from: '', to: '', selSrc: 0, theme: 'light' };
+
+  _raw() {
+    return [
+      { title: 'Kwestia mieszkaniowa', platform: 'Instagram', date: '2026-07-10', permalink: 'https://instagram.com/p/example1', sources: [
+        { label: 'OECD — baza danych o dostępności mieszkań, 2024', url: '#' },
+        { label: 'Eurostat — wskaźnik przeciążenia kosztami mieszkania', url: '#' } ] },
+      { title: 'Co naprawdę oznacza unijny AI Act', platform: 'Instagram', date: '2026-07-02', permalink: 'https://instagram.com/p/example2', sources: [
+        { label: 'Rozporządzenie (UE) 2024/1689 — AI Act', url: '#' } ] },
+      { title: 'Tydzień redakcji w liczbach', platform: 'YouTube', date: '2026-06-26', permalink: 'https://youtube.com/@niewiemniczego', sources: [] },
+      { title: 'O dezinformacji przed wyborami', platform: 'Instagram', date: '2026-06-18', permalink: 'https://instagram.com/p/example4', sources: [
+        { label: 'Reuters Institute — Digital News Report 2024', url: '#' },
+        { label: 'EDMO — analizy dezinformacji', url: '#' } ] },
+      { title: 'Notatki o szyfrowaniu', platform: 'Instagram', date: '2026-06-04', permalink: 'https://instagram.com/p/example5', sources: [] },
+      { title: 'Fact-check: co autor przekłamał', platform: 'Instagram', date: '2026-05-16', permalink: 'https://instagram.com/p/example6', sources: [
+        { label: 'Full Fact — metodologia i sprostowania', url: '#' } ] },
+      { title: 'Problem frekwencji', platform: 'YouTube', date: '2026-04-28', permalink: 'https://youtube.com/@niewiemniczego', sources: [
+        { label: 'International IDEA — baza danych o frekwencji', url: '#' } ] },
+      { title: 'Niedzielny longread', platform: 'Instagram', date: '2026-03-09', permalink: 'https://instagram.com/p/example8', sources: [] },
+      { title: 'Narzędzia, których naprawdę używam', platform: 'TikTok', date: '2026-01-22', permalink: 'https://tiktok.com/@niewiemniczego', sources: [] },
+      { title: 'Praga o świcie', platform: 'Instagram', date: '2025-11-05', permalink: 'https://instagram.com/p/example10', sources: [] },
+    ];
+  }
+
+  renderVals() {
+    const raw = this._raw();
+    const posts = raw.map((p, i) => ({
+      title: p.title,
+      platform: p.platform,
+      slotId: 'mat-' + i,
+      hasSources: p.sources.length > 0,
+      srcCount: p.sources.length,
+      onOpen: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ openId: i }); },
+      openPost: () => window.open(p.permalink, '_blank', 'noopener'),
+      dt: new Date(p.date + 'T00:00:00'),
+      dateLabel: new Date(p.date + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric' }),
+    }));
+    const open = (this.state.openId != null) ? raw[this.state.openId] : null;
+    const isPosts = this.state.tab === 'posts';
+    const isAbout = this.state.tab === 'about';
+    const isSources = this.state.tab === 'sources';
+
+    // ---- date range (shared by Posts + Sources) ----
+    const st = this.state;
+    const NOW = new Date('2026-07-13T00:00:00');
+    const DAY = 86400000;
+    let lo = null, hi = null;
+    if (st.range === 'month') lo = new Date(NOW - 30 * DAY);
+    else if (st.range === '3months') lo = new Date(NOW - 90 * DAY);
+    else if (st.range === 'year') lo = new Date(NOW.getFullYear(), 0, 1);
+    else if (st.range === 'custom') {
+      lo = st.from ? new Date(st.from + 'T00:00:00') : null;
+      hi = st.to ? new Date(st.to + 'T23:59:59') : null;
+    }
+    const inRange = (dt) => (!lo || dt >= lo) && (!hi || dt <= hi);
+
+    // ---- source -> posts that cite it (Pick & see) ----
+    const catalog = {
+      'OECD — baza danych o dostępności mieszkań, 2024': { org: 'OECD', domain: 'oecd.org', url: 'https://oecd.org' },
+      'Eurostat — wskaźnik przeciążenia kosztami mieszkania': { org: 'Eurostat', domain: 'ec.europa.eu', url: 'https://ec.europa.eu/eurostat' },
+      'Rozporządzenie (UE) 2024/1689 — AI Act': { org: 'EUR-Lex', domain: 'eur-lex.europa.eu', url: 'https://eur-lex.europa.eu' },
+      'Reuters Institute — Digital News Report 2024': { org: 'Reuters Institute', domain: 'reutersinstitute.ox.ac.uk', url: 'https://reutersinstitute.politics.ox.ac.uk' },
+      'EDMO — analizy dezinformacji': { org: 'EDMO', domain: 'edmo.eu', url: 'https://edmo.eu' },
+      'Full Fact — metodologia i sprostowania': { org: 'Full Fact', domain: 'fullfact.org', url: 'https://fullfact.org' },
+      'International IDEA — baza danych o frekwencji': { org: 'International IDEA', domain: 'idea.int', url: 'https://idea.int' },
+    };
+    const order = Object.keys(catalog);
+    const srcMap = {};
+    raw.forEach((p, i) => (p.sources || []).forEach(s => {
+      const meta = catalog[s.label]; if (!meta) return;
+      if (!inRange(posts[i].dt)) return;
+      if (!srcMap[meta.domain]) srcMap[meta.domain] = { ...meta, posts: [] };
+      srcMap[meta.domain].posts.push(posts[i]);
+    }));
+    const seen = {};
+    const sourceList0 = [];
+    order.forEach(label => { const m = catalog[label]; if (srcMap[m.domain] && !seen[m.domain]) { seen[m.domain] = true; sourceList0.push(srcMap[m.domain]); } });
+    const selSrc = Math.min(this.state.selSrc || 0, Math.max(0, sourceList0.length - 1));
+    const plWord = (n) => { const d = n % 10, h = n % 100; if (n === 1) return 'wpis'; if (d >= 2 && d <= 4 && !(h >= 12 && h <= 14)) return 'wpisy'; return 'wpisów'; };
+    const plNom = (n) => n + ' ' + plWord(n);
+    const plLoc = (n) => n === 1 ? '1 wpisie' : n + ' wpisach';
+    const sourceList = sourceList0.map((s, i) => ({
+      ...s, initial: s.org[0], countLabel: plNom(s.posts.length),
+      rowBg: i === selSrc ? 'var(--accent-container)' : 'transparent', rowFg: i === selSrc ? 'var(--on-accent-container)' : 'var(--on)',
+      selectSrc: () => this.setState({ selSrc: i }),
+    }));
+    const detSrc = sourceList0[selSrc] || { org: '', domain: '', url: '#', posts: [] };
+
+    // ---- posts filtering + grouping ----
+    const filtered = posts.filter(p => inRange(p.dt));
+    const monthLo = new Date(NOW - 30 * DAY);
+    const recent = filtered.filter(p => p.dt >= monthLo);
+    const earlier = filtered.filter(p => p.dt < monthLo);
+    const fmt = (d) => d ? new Date(d + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric' }) : '…';
+    const earlierLabels = { all: 'Wszystkie wpisy', month: 'Ostatni miesiąc', '3months': 'Ostatnie 3 miesiące', year: 'Ten rok' };
+    let earlierLabel = earlierLabels[st.range] || 'Wpisy';
+    if (st.range === 'custom') earlierLabel = (st.from || st.to) ? (fmt(st.from) + ' – ' + fmt(st.to)) : 'Zakres dat';
+    const chip = (key) => ({ active: st.range === key, set: () => this.setState({ range: key }) });
+    const cAll = chip('all'), cMonth = chip('month'), c3 = chip('3months'), cYear = chip('year'), cCustom = chip('custom');
+    const chipBg = (a) => a ? 'var(--accent-container)' : 'transparent';
+    const chipFg = (a) => a ? 'var(--on-accent-container)' : 'var(--on-2)';
+    const chipBorder = (a) => a ? '1px solid #DAE2F9' : '1px solid var(--outline)';
+
+    return {
+      posts, isPosts, isAbout, isSources,
+      sourceList,
+      detSrcOrg: detSrc.org, detSrcDomain: detSrc.domain, detSrcUrl: detSrc.url,
+      detSrcCount: plLoc(detSrc.posts.length), detSrcPosts: detSrc.posts,
+      goSources: () => this.setState({ tab: 'sources' }),
+      theme: this.state.theme,
+      themeIcon: this.state.theme === 'dark' ? 'light_mode' : 'dark_mode',
+      toggleTheme: () => this.setState({ theme: this.state.theme === 'dark' ? 'light' : 'dark' }),
+      hasSourceList: sourceList.length > 0,
+      isSourcesEmpty: sourceList.length === 0,
+      sourcesPill: isSources ? 'var(--accent-container)' : 'transparent',
+      sourcesIcon: isSources ? 'var(--on-accent-container)' : 'var(--on-2)',
+      sourcesLabel: isSources ? 'var(--on-accent-container)' : 'var(--on-2)',
+      filteredList: filtered,
+      hasPosts: filtered.length > 0,
+      sectionLabel: earlierLabel,
+      filteredCount: filtered.length,
+      postsCountLabel: (filtered.length === 1 ? '1 wpis' : filtered.length + ' ' + (function (n) { const d = n % 10, h = n % 100; if (d >= 2 && d <= 4 && !(h >= 12 && h <= 14)) return 'wpisy'; return 'wpisów'; })(filtered.length)),
+      isEmpty: filtered.length === 0,
+      isCustom: st.range === 'custom',
+      fromVal: st.from, toVal: st.to,
+      setFrom: (e) => this.setState({ from: e.target.value }),
+      setTo: (e) => this.setState({ to: e.target.value }),
+      allBg: chipBg(cAll.active), allFg: chipFg(cAll.active), allBorder: chipBorder(cAll.active), allActive: cAll.active, setAll: cAll.set,
+      monthBg: chipBg(cMonth.active), monthFg: chipFg(cMonth.active), monthBorder: chipBorder(cMonth.active), monthActive: cMonth.active, setMonth: cMonth.set,
+      m3Bg: chipBg(c3.active), m3Fg: chipFg(c3.active), m3Border: chipBorder(c3.active), m3Active: c3.active, setM3: c3.set,
+      yearBg: chipBg(cYear.active), yearFg: chipFg(cYear.active), yearBorder: chipBorder(cYear.active), yearActive: cYear.active, setYear: cYear.set,
+      customBg: chipBg(cCustom.active), customFg: chipFg(cCustom.active), customBorder: chipBorder(cCustom.active), customActive: cCustom.active, setCustom: cCustom.set,
+      goPosts: () => this.setState({ tab: 'posts' }),
+      goAbout: () => this.setState({ tab: 'about' }),
+      postsPill: isPosts ? 'var(--accent-container)' : 'transparent',
+      postsIcon: isPosts ? 'var(--on-accent-container)' : 'var(--on-2)',
+      postsLabel: isPosts ? 'var(--on-accent-container)' : 'var(--on-2)',
+      aboutPill: isAbout ? 'var(--accent-container)' : 'transparent',
+      aboutIcon: isAbout ? 'var(--on-accent-container)' : 'var(--on-2)',
+      aboutLabel: isAbout ? 'var(--on-accent-container)' : 'var(--on-2)',
+      modalOpen: open != null,
+      modalTitle: open ? open.title : '',
+      modalPlatform: open ? open.platform : '',
+      modalSources: open ? open.sources.map((s, i) => ({ label: s.label, url: s.url, n: i + 1 })) : [],
+      closeModal: () => this.setState({ openId: null }),
+      stop: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+    };
+  }
+}
+</script>
+</body>
+</html>
