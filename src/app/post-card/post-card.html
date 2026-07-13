@@ -1,21 +1,29 @@
-<button type="button" class="thumb" (click)="openPost()" [attr.aria-label]="post().caption || 'Wpis'">
-  @if (post().thumbnailUrl) {
-    <img [src]="post().thumbnailUrl" [alt]="post().caption || ''" loading="lazy" />
-  } @else {
-    <span class="placeholder msym">image</span>
-  }
+<div class="thumb">
+  <button type="button" class="open" (click)="openPost()" [attr.aria-label]="post().caption || 'Wpis'">
+    @if (post().thumbnailUrl) {
+      <img [src]="post().thumbnailUrl" [alt]="post().caption || ''" loading="lazy" />
+    } @else {
+      <span class="placeholder msym">image</span>
+    }
+  </button>
   <span class="platform">{{ post().platform }}</span>
-</button>
+  @if (!compact() && post().sources.length) {
+    <button
+      type="button"
+      class="sources-btn"
+      (click)="openSources($event)"
+      [attr.aria-label]="'Źródła: ' + post().sources.length"
+    >
+      <span class="msym">menu_book</span>
+      Źródła · {{ post().sources.length }}
+    </button>
+  }
+</div>
 
 @if (!compact()) {
   <div class="meta">
     <span class="date">{{ dateLabel() }}</span>
-    @if (post().sources.length) {
-      <button type="button" class="sources-btn" (click)="openSources($event)">
-        <span class="msym">menu_book</span>
-        Źródła · {{ post().sources.length }}
-      </button>
-    } @else {
+    @if (!post().sources.length) {
       <span class="no-sources">Nie dodano jeszcze źródeł</span>
     }
   </div>

@@ -39,7 +39,7 @@ export class PostCard {
       data: this.post(),
       panelClass: 'sources-dialog-panel',
       autoFocus: 'dialog',
-      width: 'min(520px, 92vw)',
+      width: 'min(460px, 92vw)',
     });
   }
 }

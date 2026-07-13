@@ -8,12 +8,12 @@ import { Post } from '../models';
   imports: [MatDialogModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="wrap">
+    <div class="dlg">
       <span class="kicker">Źródła</span>
-      <h2 class="title serif" mat-dialog-title>{{ post.caption || 'Wpis' }}</h2>
+      <h2 class="title serif">{{ post.caption || 'Wpis' }}</h2>
       <div class="platform">{{ post.platform }}</div>
 
-      <mat-dialog-content>
+      <div class="body">
         @if (post.sources.length) {
           <ol class="list">
             @for (s of post.sources; track s.url; let i = $index) {
@@ -29,11 +29,11 @@ import { Post } from '../models';
         } @else {
           <p class="empty">Nie dodano jeszcze źródeł</p>
         }
-      </mat-dialog-content>
+      </div>
 
-      <mat-dialog-actions align="end">
+      <div class="actions">
         <button matButton (click)="close()">Zamknij</button>
-      </mat-dialog-actions>
+      </div>
     </div>
   `,
   styleUrl: './sources-dialog.scss',

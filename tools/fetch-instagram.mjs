@@ -273,10 +273,13 @@ async function main() {
   const warnings = [];
 
   console.log('→ Fetching media…');
-  const media = await apiGetAll(`${cfg.userId || 'me'}/media`, {
-    fields: 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp',
+  const allMedia = await apiGetAll(`${cfg.userId || 'me'}/media`, {
+    fields: 'id,caption,media_type,media_product_type,media_url,thumbnail_url,permalink,timestamp',
   });
-  console.log(`  ${media.length} media items.`);
+  // Reels only — skip regular feed posts/carousels.
+  const isReel = (m) => m.media_product_type === 'REELS' || /\/reel\//.test(m.permalink || '');
+  const media = allMedia.filter(isReel);
+  console.log(`  ${allMedia.length} media items, ${media.length} reels (skipping ${allMedia.length - media.length} non-reels).`);
 
   const posts = [];
   for (const m of media) {

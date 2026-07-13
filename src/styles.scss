@@ -113,3 +113,11 @@ body {
 * {
   box-sizing: border-box;
 }
+
+// Sources dialog panel (rendered in the CDK overlay, outside component styles).
+.sources-dialog-panel .mat-mdc-dialog-surface {
+  border-radius: 28px;
+  background: var(--surface);
+  padding: 0;
+}
+
