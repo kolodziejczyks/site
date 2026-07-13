@@ -20,8 +20,14 @@ import { Post } from '../models';
               <li>
                 <span class="num">{{ i + 1 }}</span>
                 <a [href]="s.url" target="_blank" rel="noopener">
-                  <span class="label">{{ s.label }}</span>
-                  <span class="msym">open_in_new</span>
+                  <span class="src-title">
+                    {{ s.title || s.label }}
+                    <span class="msym">open_in_new</span>
+                  </span>
+                  <span class="src-domain">{{ s.siteName ? s.siteName + ' · ' : '' }}{{ s.label }}</span>
+                  @if (s.description) {
+                    <span class="src-desc">{{ s.description }}</span>
+                  }
                 </a>
               </li>
             }

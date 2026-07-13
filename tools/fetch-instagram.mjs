@@ -71,12 +71,15 @@ export function requireConfig() {
  * the owner's own comments. Honors IG_USER_ID if provided (skips the id lookup).
  */
 export async function resolveUser() {
-  const me = await apiGet(apiUrl('me', { fields: 'user_id,username' })).catch(() => null);
+  const me = await apiGet(apiUrl('me', { fields: 'user_id,username,profile_picture_url' })).catch(
+    () => null,
+  );
   // graph.instagram.com returns `user_id` (numeric IG id) and `username`; older
   // shapes return `id`. Prefer an explicit IG_USER_ID, then user_id, then id.
   if (me) {
     cfg.userId = cfg.userId || String(me.user_id ?? me.id ?? '');
     cfg.username = me.username || '';
+    cfg.profilePicUrl = me.profile_picture_url || '';
   }
   if (!cfg.userId && !cfg.username) {
     throw new Error('Could not resolve the account from the token (is it valid and for a Business/Creator account?).');
@@ -181,17 +184,131 @@ export function buildCatalog(posts) {
   const catalog = {};
   for (const post of posts) {
     for (const s of post.sources) {
-      if (catalog[s.label]) continue;
       let domain = s.label, origin = s.url;
       try {
         const u = new URL(s.url);
         domain = u.hostname.replace(/^www\./, '');
         origin = u.origin;
       } catch { /* leave as-is */ }
-      catalog[s.label] = { org: domain, domain, url: origin };
+      // Prefer a real site name (from page metadata) as the org label; keep the
+      // best one seen for this domain.
+      const existing = catalog[s.label];
+      const org = s.siteName || existing?.org || domain;
+      catalog[s.label] = { org, domain, url: existing?.url || origin };
     }
   }
   return catalog;
+}
+
+// ---------------------------------------------------------------------------
+// Link metadata (page title / site name / description) — best-effort, fetched
+// at build time so the Źródła list can show more than a bare domain.
+// ---------------------------------------------------------------------------
+const UA =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
+
+function decodeEntities(s) {
+  if (!s) return s;
+  return s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#0*39;|&apos;|&#x0*27;/gi, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Read a <meta> content value by property/name (attribute order-independent). */
+function metaContent(html, key) {
+  const attr = `(?:property|name)=["']${key}["']`;
+  const re = new RegExp(`<meta[^>]*${attr}[^>]*>`, 'i');
+  const tag = html.match(re)?.[0];
+  if (!tag) return '';
+  return decodeEntities(tag.match(/content=["']([^"']*)["']/i)?.[1] || '');
+}
+
+export function parseMeta(html) {
+  const head = html.slice(0, 200_000);
+  const title =
+    metaContent(head, 'og:title') ||
+    metaContent(head, 'twitter:title') ||
+    decodeEntities(head.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
+  const siteName = metaContent(head, 'og:site_name');
+  const description =
+    metaContent(head, 'og:description') ||
+    metaContent(head, 'twitter:description') ||
+    metaContent(head, 'description');
+  const clip = (s, n) => (s && s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s);
+  return {
+    title: clip(title, 140) || undefined,
+    siteName: clip(siteName, 60) || undefined,
+    description: clip(description, 200) || undefined,
+  };
+}
+
+async function fetchMeta(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      redirect: 'follow',
+      headers: { 'User-Agent': UA, Accept: 'text/html,application/xhtml+xml' },
+    });
+    const ct = res.headers.get('content-type') || '';
+    if (!res.ok || !ct.includes('text/html')) return null;
+    const html = await res.text();
+    return parseMeta(html);
+  } catch {
+    return null; // blocked / timed out / not HTML — fall back to the domain
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** Download the account's profile picture to public/portrait.jpg (best-effort). */
+async function downloadProfilePic(warnings) {
+  if (!cfg.profilePicUrl) {
+    warnings.push('no profile_picture_url on the account — keeping existing portrait.jpg');
+    return;
+  }
+  const abs = join(ROOT, 'public', 'portrait.jpg');
+  try {
+    const res = await fetch(cfg.profilePicUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    await writeFile(abs, Buffer.from(await res.arrayBuffer()));
+    console.log('  Downloaded profile picture → public/portrait.jpg');
+  } catch (err) {
+    warnings.push(`profile picture download failed (${err.message}); keeping existing portrait.jpg`);
+  }
+}
+
+/** Fetch metadata for every unique source URL (in parallel) and attach it. */
+async function enrichSources(posts, warnings) {
+  const urls = [...new Set(posts.flatMap((p) => p.sources.map((s) => s.url)))];
+  if (!urls.length) return;
+  console.log(`→ Fetching metadata for ${urls.length} source link(s)…`);
+  const entries = await Promise.all(urls.map(async (u) => [u, await fetchMeta(u)]));
+  const byUrl = new Map(entries);
+  let ok = 0;
+  for (const post of posts) {
+    for (const s of post.sources) {
+      const m = byUrl.get(s.url);
+      if (m && (m.title || m.siteName || m.description)) {
+        if (m.title) s.title = m.title;
+        if (m.siteName) s.siteName = m.siteName;
+        if (m.description) s.description = m.description;
+        ok++;
+      } else {
+        warnings.push(`source ${s.url}: no metadata (blocked/timeout) — showing domain only`);
+      }
+    }
+  }
+  console.log(`  metadata resolved for ${ok} source link(s).`);
 }
 
 // ---------------------------------------------------------------------------
@@ -272,6 +389,8 @@ async function main() {
 
   const warnings = [];
 
+  await downloadProfilePic(warnings);
+
   console.log('→ Fetching media…');
   const allMedia = await apiGetAll(`${cfg.userId || 'me'}/media`, {
     fields: 'id,caption,media_type,media_product_type,media_url,thumbnail_url,permalink,timestamp',
@@ -308,6 +427,8 @@ async function main() {
       sources, // [] === "Nie dodano jeszcze źródeł" in the UI
     });
   }
+
+  await enrichSources(posts, warnings);
 
   posts.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)); // newest first
   const catalog = buildCatalog(posts);

@@ -1,8 +1,13 @@
 export type Platform = 'Instagram' | 'YouTube' | 'TikTok';
 
 export interface Source {
+  /** Domain (used for grouping/fallback display). */
   label: string;
   url: string;
+  /** Page metadata fetched at build time (best-effort; may be absent). */
+  title?: string;
+  siteName?: string;
+  description?: string;
 }
 
 export interface Post {

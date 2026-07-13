@@ -9,7 +9,7 @@
   box-shadow: var(--shadow);
   padding: 40px;
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 240px;
   gap: 40px;
   align-items: center;
 }
@@ -59,11 +59,14 @@
 }
 
 .portrait {
+  display: flex;
+  justify-content: center;
+
   img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 24px;
+    border-radius: 50%;
     box-shadow: var(--shadow);
   }
 }
