@@ -147,6 +147,30 @@
   width: 100%;
 }
 
+.site-footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--on-3);
+
+  a {
+    color: var(--on-3);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .sep {
+    opacity: 0.5;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Bottom navigation (mobile)
 // ---------------------------------------------------------------------------
