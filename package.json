@@ -10,7 +10,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:personal-site": "node dist/personal-site/server/server.mjs",
     "fetch:instagram": "node tools/fetch-instagram.mjs",
     "whoami:instagram": "node tools/fetch-instagram.mjs --whoami",
     "prebuild": "node tools/fetch-instagram.mjs || echo \"skipping instagram fetch (no token) — using existing data/posts.json\""

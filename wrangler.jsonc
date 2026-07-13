@@ -1,0 +1,10 @@
+{
+  // Static-assets-only deployment (no server script) — serves the prerendered
+  // Angular SSG output as a plain static site. Name matches the existing
+  // Cloudflare project so deploys update it in place (URL/custom domain kept).
+  "name": "site",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist/personal-site/browser"
+  }
+}
