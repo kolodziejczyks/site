@@ -37,4 +37,4 @@ const LINKEDIN: Social = {
 
 /** Header keeps the two primary contacts; the rest live in the About section. */
 export const HEADER_SOCIALS: Social[] = [INSTAGRAM, EMAIL];
-export const ABOUT_SOCIALS: Social[] = [YOUTUBE, TIKTOK, LINKEDIN];
+export const ABOUT_SOCIALS: Social[] = [TIKTOK, LINKEDIN, YOUTUBE];
