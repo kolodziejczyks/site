@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { App } from './app';
@@ -7,7 +8,7 @@ describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideAnimationsAsync(), provideNativeDateAdapter()],
+      providers: [provideRouter([]), provideAnimationsAsync(), provideNativeDateAdapter()],
     }).compileComponents();
   });
 

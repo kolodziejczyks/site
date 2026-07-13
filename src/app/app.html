@@ -1,19 +1,19 @@
 <div class="shell">
   <!-- Desktop navigation rail -->
   <nav class="rail" aria-label="Nawigacja główna">
-    <button type="button" class="avatar" (click)="setTab('about')" aria-label="O mnie">
+    <a class="avatar" routerLink="/o-mnie" aria-label="O mnie">
       <img src="/portrait.jpg" alt="" />
-    </button>
-    @for (item of nav; track item.tab) {
-      <button
-        type="button"
+    </a>
+    @for (item of nav; track item.path) {
+      <a
         class="rail-item"
-        [class.active]="tab() === item.tab"
-        (click)="setTab(item.tab)"
+        [routerLink]="'/' + item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '' }"
       >
         <span class="pill"><span class="msym">{{ item.icon }}</span></span>
         <span class="label">{{ item.label }}</span>
-      </button>
+      </a>
     }
   </nav>
 
@@ -33,32 +33,22 @@
     </header>
 
     <main class="content">
-      @switch (tab()) {
-        @case ('posts') {
-          <app-posts-view />
-        }
-        @case ('sources') {
-          <app-sources-view />
-        }
-        @case ('about') {
-          <app-about-view />
-        }
-      }
+      <router-outlet />
     </main>
   </div>
 
   <!-- Mobile bottom navigation -->
   <nav class="bottom-nav" aria-label="Nawigacja główna">
-    @for (item of nav; track item.tab) {
-      <button
-        type="button"
+    @for (item of nav; track item.path) {
+      <a
         class="bottom-item"
-        [class.active]="tab() === item.tab"
-        (click)="setTab(item.tab)"
+        [routerLink]="'/' + item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '' }"
       >
         <span class="pill"><span class="msym">{{ item.icon }}</span></span>
         <span class="label">{{ item.label }}</span>
-      </button>
+      </a>
     }
   </nav>
 </div>

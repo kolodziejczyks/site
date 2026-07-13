@@ -5,6 +5,9 @@
   "name": "site",
   "compatibility_date": "2026-07-01",
   "assets": {
-    "directory": "./dist/personal-site/browser"
+    "directory": "./dist/personal-site/browser",
+    // Prerendered routes (/, /zrodla, /o-mnie, /prywatnosc) are served directly;
+    // any other path falls back to the app so the router can resolve it.
+    "not_found_handling": "single-page-application"
   }
 }

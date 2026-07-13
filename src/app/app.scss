@@ -32,6 +32,8 @@
   padding: 0;
   cursor: pointer;
   margin-bottom: 12px;
+  display: block;
+  text-decoration: none;
 
   img {
     width: 44px;
@@ -45,6 +47,7 @@
   border: 0;
   background: none;
   cursor: pointer;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,6 +197,7 @@
     border: 0;
     background: none;
     cursor: pointer;
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
