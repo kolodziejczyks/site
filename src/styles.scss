@@ -121,3 +121,28 @@ body {
   padding: 0;
 }
 
+// Round icon button — used by the header theme toggle and the shared
+// <app-social-links> component (global so both scopes share it).
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--on-2);
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--surface-2);
+    color: var(--on);
+  }
+  .msym {
+    font-size: 22px;
+  }
+}
+

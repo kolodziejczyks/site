@@ -28,29 +28,7 @@
         <button type="button" class="icon-btn" (click)="toggleTheme()" aria-label="Przełącz motyw">
           <span class="msym">{{ theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</span>
         </button>
-        <div class="socials">
-          @for (s of socials; track s.label) {
-            <a
-              class="icon-btn"
-              [href]="s.href"
-              target="_blank"
-              rel="noopener"
-              [attr.aria-label]="s.label"
-            >
-              @if (s.path) {
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                  <path
-                    [attr.fill-rule]="s.evenOdd ? 'evenodd' : null"
-                    [attr.d]="s.path"
-                    fill="currentColor"
-                  />
-                </svg>
-              } @else {
-                <span class="msym">{{ s.glyph }}</span>
-              }
-            </a>
-          }
-        </div>
+        <app-social-links [links]="socials" />
       </div>
     </header>
 

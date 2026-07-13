@@ -39,6 +39,17 @@
   gap: 4px;
 }
 
+.socials-more {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  app-social-links {
+    margin-left: -8px; // align first icon's optical edge with the text
+  }
+}
+
 .contact-label {
   font-size: 12px;
   text-transform: uppercase;

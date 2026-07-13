@@ -132,36 +132,7 @@
   align-items: center;
   gap: 4px;
 }
-
-.socials {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 0;
-  background: none;
-  border-radius: 50%;
-  cursor: pointer;
-  color: var(--on-2);
-  text-decoration: none;
-  transition: background 0.15s;
-
-  &:hover {
-    background: var(--surface-2);
-    color: var(--on);
-  }
-
-  .msym {
-    font-size: 22px;
-  }
-}
+// .icon-btn lives in global styles.scss (shared with <app-social-links>).
 
 // ---------------------------------------------------------------------------
 // Content
@@ -201,28 +172,10 @@
     display: none;
   }
   .brand .name {
-    font-size: 17px;
+    font-size: 18px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  // Compact the theme toggle + social links so they don't dominate the header.
-  .actions {
-    gap: 0;
-  }
-  .socials {
-    gap: 0;
-  }
-  .icon-btn {
-    width: 32px;
-    height: 32px;
-  }
-  .icon-btn .msym {
-    font-size: 19px;
-  }
-  .icon-btn svg {
-    width: 16px;
-    height: 16px;
   }
 
   .bottom-nav {
