@@ -24,6 +24,12 @@ export class SourcesView {
     this.view.set(v);
   }
 
+  /** Mobile drill-down: whether the selected source's detail is showing. */
+  readonly opened = signal(false);
+  back(): void {
+    this.opened.set(false);
+  }
+
   private readonly sel = signal(0);
   /** Selected index clamped to the current list length. */
   readonly selIndex = computed(() => Math.min(this.sel(), Math.max(0, this.groups().length - 1)));
@@ -32,6 +38,7 @@ export class SourcesView {
 
   select(i: number): void {
     this.sel.set(i);
+    this.opened.set(true); // mobile: reveal the detail
   }
 
   monogram(org: string): string {

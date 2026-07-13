@@ -141,6 +141,30 @@
   flex-direction: column;
 }
 
+.back-btn {
+  display: none; // desktop: both columns visible, no back needed
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-bottom: 16px;
+  padding: 8px 14px 8px 10px;
+  border: 1px solid var(--outline);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--on-2);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+
+  .msym {
+    font-size: 18px;
+  }
+  &:hover {
+    background: var(--surface-1);
+  }
+}
+
 .detail-head {
   margin-bottom: 18px;
 
@@ -284,5 +308,19 @@
   }
   .detail-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  // Drill-down: show the list OR the selected detail, not both stacked.
+  .pick-see .detail {
+    display: none;
+  }
+  .pick-see.detail-open .list {
+    display: none;
+  }
+  .pick-see.detail-open .detail {
+    display: flex;
+  }
+  .back-btn {
+    display: inline-flex;
   }
 }

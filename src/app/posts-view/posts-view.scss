@@ -38,6 +38,17 @@
   }
 }
 
+// Phones: 2 columns so ~4 reels are visible at once (instead of one big thumb).
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .head h1 {
+    font-size: 24px;
+  }
+}
+
 .empty {
   display: flex;
   flex-direction: column;

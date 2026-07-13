@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T13:59:09.851Z",
+  "generatedAt": "2026-07-13T14:23:40.420Z",
   "posts": [
     {
       "id": "17860114731660539",
@@ -26,7 +26,16 @@
       "permalink": "https://www.instagram.com/reel/DaBSZf9gTJu/",
       "thumbnailUrl": "/thumbnails/17883962106660402.jpg",
       "caption": "co sądzicie???",
-      "sources": []
+      "sources": [
+        {
+          "label": "the-decoder.com",
+          "url": "https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/",
+          "favicon": "/favicons/the-decoder.com.png",
+          "title": "Landmark German ruling declares Google's AI Overviews are Google's own words and makes it liable for false answers",
+          "siteName": "The Decoder",
+          "description": "A German regional court has ruled that Google is directly liable for the content of its AI search overviews. According to the court, previous limited liability protections for search engine operators…"
+        }
+      ]
     },
     {
       "id": "18175246657406790",
@@ -555,6 +564,12 @@
       "domain": "about.fb.com",
       "url": "https://about.fb.com",
       "favicon": "/favicons/about.fb.com.png"
+    },
+    "the-decoder.com": {
+      "org": "The Decoder",
+      "domain": "the-decoder.com",
+      "url": "https://the-decoder.com",
+      "favicon": "/favicons/the-decoder.com.png"
     },
     "pewresearch.org": {
       "org": "Pew Research Center",

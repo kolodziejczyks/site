@@ -117,3 +117,27 @@
   font-style: italic;
   color: var(--on-3);
 }
+
+// Phones: smaller overlays to suit the tighter 2-column thumbnails.
+@media (max-width: 600px) {
+  .platform {
+    top: 7px;
+    left: 7px;
+    font-size: 10px;
+    padding: 3px 7px;
+  }
+  .sources-btn {
+    left: 7px;
+    bottom: 7px;
+    font-size: 11px;
+    padding: 5px 10px 5px 8px;
+    gap: 4px;
+
+    .msym {
+      font-size: 15px;
+    }
+  }
+  .date {
+    font-size: 12px;
+  }
+}
