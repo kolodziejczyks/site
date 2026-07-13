@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DOCUMENT,
+  PLATFORM_ID,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DataService } from '../data.service';
 import { DateFilter } from '../date-filter/date-filter';
@@ -24,10 +33,23 @@ export class SourcesView {
     this.view.set(v);
   }
 
+  private readonly doc = inject(DOCUMENT);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private savedScrollY = 0;
+
+  private isMobile(): boolean {
+    return this.isBrowser && (this.doc.defaultView?.innerWidth ?? 1000) <= 900;
+  }
+
   /** Mobile drill-down: whether the selected source's detail is showing. */
   readonly opened = signal(false);
   back(): void {
+    const y = this.savedScrollY;
     this.opened.set(false);
+    if (this.isMobile()) {
+      // Restore the list scroll position after it re-renders.
+      setTimeout(() => this.doc.defaultView?.scrollTo(0, y), 0);
+    }
   }
 
   private readonly sel = signal(0);
@@ -38,7 +60,13 @@ export class SourcesView {
 
   select(i: number): void {
     this.sel.set(i);
-    this.opened.set(true); // mobile: reveal the detail
+    if (this.isMobile()) {
+      if (!this.opened()) this.savedScrollY = this.doc.defaultView?.scrollY ?? 0;
+      this.opened.set(true); // reveal the detail…
+      this.doc.defaultView?.scrollTo(0, 0); // …starting at its top
+    } else {
+      this.opened.set(true);
+    }
   }
 
   monogram(org: string): string {
